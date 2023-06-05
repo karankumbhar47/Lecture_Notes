@@ -1,0 +1,194 @@
+hari@hari:~$ octave
+^Coctave exited with signal 2
+hari@hari:~$ ^C
+hari@hari:~$ octave-cli
+GNU Octave, version 4.2.2
+Copyright (C) 2018 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/get-involved.html
+
+Read http://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+octave:1> u = [1 2 3 4 5]
+u =
+
+   1   2   3   4   5
+
+octave:2> a = 8*u
+a =
+
+    8   16   24   32   40
+
+octave:3> size(a)
+ans =
+
+   1   5
+
+octave:4> b = a'
+b =
+
+    8
+   16
+   24
+   32
+   40
+
+octave:5> size(b)
+ans =
+
+   5   1
+
+octave:6> a+u
+ans =
+
+    9   18   27   36   45
+
+octave:7> a+b
+ans =
+
+   16   24   32   40   48
+   24   32   40   48   56
+   32   40   48   56   64
+   40   48   56   64   72
+   48   56   64   72   80
+
+octave:8> b
+b =
+
+    8
+   16
+   24
+   32
+   40
+
+octave:9> a
+a =
+
+    8   16   24   32   40
+
+octave:10> size(a)
+ans =
+
+   1   5
+
+octave:11> a
+a =
+
+    8   16   24   32   40
+
+octave:12> clear all
+octave:13> a = 1:5
+a =
+
+   1   2   3   4   5
+
+octave:14> b = 1:3
+b =
+
+   1   2   3
+
+octave:15> a+b
+error: operator +: nonconformant arguments (op1 is 1x5, op2 is 1x3)
+octave:15> a + a'
+
+Warning!!!
+ans =
+
+    2    3    4    5    6
+    3    4    5    6    7
+    4    5    6    7    8
+    5    6    7    8    9
+    6    7    8    9   10
+
+octave:16> a
+a =
+
+   1   2   3   4   5
+
+octave:17> norm(a)
+ans =  7.4162
+octave:18> a = [1 2]
+a =
+
+   1   2
+
+octave:19> b = [3 4]
+b =
+
+   3   4
+
+octave:20> c = [7 7]
+c =
+
+   7   7
+
+octave:21> plot([a(1),b(1)],[a(2) b(2)])
+octave:22> hold on
+octave:23> plot([b(1),c(1)],[b(2) c(2)])
+octave:24> plot([a(1),c(1)],[a(2) c(2)])
+octave:25> plot([a(1),c(1)],[a(2) c(2)],'r')
+octave:26> norm(b-a)
+ans =  2.8284
+octave:27> norm(a-b)
+ans =  2.8284
+octave:28> b-a
+ans =
+
+   2   2
+
+octave:29> sqrt(2*2+2*2)
+ans =  2.8284
+octave:30> norm([2 2])
+ans =  2.8284
+octave:31> norm(b-a)
+ans =  2.8284
+octave:32> norm(a-c)
+ans =  7.8102
+octave:33> l1 = norm(b-a)
+l1 =  2.8284
+octave:34> l2 = norm(a-c)
+l2 =  7.8102
+octave:35> l3 = norm(b-c)
+l3 =  5
+octave:36> l2
+l2 =  7.8102
+octave:37> [l2 l1+l3]
+ans =
+
+   7.8102   7.8284
+
+octave:38> a = [1 2 3 4]
+a =
+
+   1   2   3   4
+
+octave:39> b = [4 3 2 1]
+b =
+
+   4   3   2   1
+
+octave:40> c = [8 8 8 8]
+c =
+
+   8   8   8   8
+
+octave:41> norm(b-a)
+ans =  4.4721
+octave:42> l1 = norm(b-a)
+l1 =  4.4721
+octave:43> l2 = norm(b-c)
+l2 =  11.225
+octave:44> l3 = norm(a-c)
+l3 =  11.225
+octave:45> 
+octave:45> 
+

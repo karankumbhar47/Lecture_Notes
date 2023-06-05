@@ -1,0 +1,253 @@
+hari@hari:~$ octvae-cli
+bash: octvae-cli: command not found
+hari@hari:~$ octave-cli
+GNU Octave, version 4.2.2
+Copyright (C) 2018 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/get-involved.html
+
+Read http://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+octave:1> v = 1:5
+v =
+
+   1   2   3   4   5
+
+octave:2> v'
+ans =
+
+   1
+   2
+   3
+   4
+   5
+
+octave:3> u = 1:-1:-5
+u =
+
+   1   0  -1  -2  -3  -4  -5
+
+octave:4> u'
+ans =
+
+   1
+   0
+  -1
+  -2
+  -3
+  -4
+  -5
+
+octave:5> size(u)
+ans =
+
+   1   7
+
+octave:6> size(u')
+ans =
+
+   7   1
+
+octave:7> u2 = u(1:5)
+u2 =
+
+   1   0  -1  -2  -3
+
+octave:8> size(u2)
+ans =
+
+   1   5
+
+octave:9> v
+v =
+
+   1   2   3   4   5
+
+octave:10> u = u2
+u =
+
+   1   0  -1  -2  -3
+
+octave:11> v+u
+ans =
+
+   2   2   2   2   2
+
+octave:12> 
+octave:12> 
+octave:12> norm(u)
+ans =  3.8730
+octave:13> P = rand(5,2)
+P =
+
+   0.81801   0.64319
+   0.86015   0.90696
+   0.53590   0.36027
+   0.77681   0.50865
+   0.21654   0.21641
+
+octave:14> plot(P(:,1),P(:,2))
+octave:15> scatter(P(:,1),P(:,2))
+octave:16> P1 = P(1,:)
+P1 =
+
+   0.81801   0.64319
+
+octave:17> P2 = P(2,:)
+P2 =
+
+   0.86015   0.90696
+
+octave:18> norm(P2-P1)
+ans =  0.26711
+octave:19> 
+octave:19> 
+octave:19> x = -2:0.001:2;
+octave:20> y = x.^3-x;
+octave:21> plot(x,y)
+octave:22> 
+octave:22> 
+octave:22> I = 10
+I =  10
+octave:23> R = 1000
+R =  1000
+octave:24> V = I*R + randn(10)
+V =
+
+ Columns 1 through 6:
+
+   9.9997e+03   9.9995e+03   9.9995e+03   9.9985e+03   9.9995e+03   1.0001e+04
+   9.9986e+03   1.0001e+04   1.0000e+04   1.0001e+04   9.9994e+03   9.9991e+03
+   9.9994e+03   1.0000e+04   1.0001e+04   1.0001e+04   1.0000e+04   1.0000e+04
+   9.9992e+03   1.0002e+04   1.0001e+04   1.0000e+04   9.9988e+03   9.9987e+03
+   9.9994e+03   1.0002e+04   1.0000e+04   9.9999e+03   1.0001e+04   1.0001e+04
+   9.9995e+03   9.9988e+03   1.0001e+04   1.0000e+04   9.9987e+03   1.0000e+04
+   9.9996e+03   1.0000e+04   1.0002e+04   1.0001e+04   1.0000e+04   9.9998e+03
+   1.0000e+04   9.9994e+03   9.9998e+03   1.0000e+04   9.9989e+03   9.9983e+03
+   9.9989e+03   1.0000e+04   1.0000e+04   9.9994e+03   1.0001e+04   9.9998e+03
+   1.0001e+04   1.0000e+04   9.9989e+03   1.0001e+04   1.0000e+04   9.9998e+03
+
+ Columns 7 through 10:
+
+   9.9998e+03   1.0000e+04   1.0000e+04   1.0001e+04
+   9.9991e+03   1.0001e+04   9.9999e+03   1.0000e+04
+   1.0001e+04   1.0001e+04   1.0000e+04   9.9993e+03
+   1.0000e+04   9.9988e+03   9.9977e+03   9.9986e+03
+   9.9996e+03   9.9990e+03   9.9967e+03   1.0000e+04
+   1.0001e+04   9.9976e+03   1.0001e+04   1.0001e+04
+octave:25> V = I*R + randn(10,1)
+V =
+
+   1.0001e+04
+   1.0001e+04
+   9.9991e+03
+   1.0000e+04
+   9.9996e+03
+   9.9987e+03
+   1.0001e+04
+   1.0000e+04
+   9.9989e+03
+   9.9981e+03
+
+octave:26> I = (5:10)'
+I =
+
+    5
+    6
+    7
+    8
+    9
+   10
+
+octave:27> V = I*R + randn(5,1)
+error: operator +: nonconformant arguments (op1 is 6x1, op2 is 5x1)
+octave:27> V = I*R + randn(6,1)
+V =
+
+   4999.6
+   5999.2
+   6999.9
+   7998.3
+   8999.0
+   9998.9
+
+octave:28> plot(I,V)
+octave:29> V = I*R + 100*randn(6,1)
+V =
+
+   4837.0
+   5979.1
+   7053.8
+   7984.2
+   8959.2
+   9906.2
+
+octave:30> scatter(I,V)
+octave:31> help size
+'size' is a built-in function from the file libinterp/corefcn/data.cc
+
+ -- SZ = size (A)
+ -- DIM_SZ = size (A, DIM)
+ -- [ROWS, COLS, ..., DIM_N_SZ] = size (...)
+     Return a row vector with the size (number of elements) of each
+     dimension for the object A.
+
+     When given a second argument, DIM, return the size of the
+     corresponding dimension.
+
+     With a single output argument, 'size' returns a row vector.  When
+     called with multiple output arguments, 'size' returns the size of
+     dimension N in the Nth argument.  The number of rows, dimension 1,
+     is returned in the first argument, the number of columns, dimension
+     2, is returned in the second argument, etc.  If there are more
+     dimensions in A then there are output arguments, 'size' returns the
+     total number of elements in the remaining dimensions in the final
+     output argument.
+
+     Example 1: single row vector output
+
+          size ([1, 2; 3, 4; 5, 6])
+             => [ 3, 2 ]
+
+     Example 2: number of elements in 2nd dimension (columns)
+
+          size ([1, 2; 3, 4; 5, 6], 2)
+              => 2
+
+     Example 3: number of output arguments == number of dimensions
+
+          [nr, nc] = size ([1, 2; 3, 4; 5, 6])
+              => nr = 3
+              => nc = 2
+
+     Example 4: number of output arguments != number of dimensions
+
+          [nr, remainder] = size (ones (2, 3, 4, 5))
+              => nr = 2
+              => remainder = 60
+
+     See also: numel, ndims, length, rows, columns, size_equal,
+     common_size.
+
+Additional help for built-in functions and operators is
+available in the online version of the manual.  Use the command
+'doc <topic>' to search the manual index.
+
+Help and information about Octave is also available on the WWW
+at http://www.octave.org and via the help@octave.org
+mailing list.
+octave:32> sqrt(2)
+ans =  1.4142
+octave:33> sqrt(-2)
+ans =  0.00000 + 1.41421i
+octave:34> 
+

@@ -1,0 +1,275 @@
+hari@hari:~$ octave-cli
+GNU Octave, version 4.2.2
+Copyright (C) 2018 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/get-involved.html
+
+Read http://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+octave:1> % a1x + b1y = c1 
+octave:1> % a2x + b2 y = c2
+octave:1> 
+octave:1> % 2x + 3y = 1
+octave:1> % 4x - y = 2
+octave:1> 
+octave:1> % Ax = b
+octave:1> 
+octave:1> 
+octave:1> A = [2 3; 4 -1]
+A =
+
+   2   3
+   4  -1
+
+octave:2> b = [1;2]
+b =
+
+   1
+   2
+
+octave:3> % 2x + 3y = 1 rearranging y = 1/3 (1 - 2x)
+octave:3> x1 = -5 : 0.01 : 5;
+octave:4> y1 = 1/3*(1- 2*x1); 
+octave:5> plot(x1,y1)
+octave:6> hold on
+octave:7> % y = 4x -2
+octave:7> y2 = 4*x1-2;
+octave:8> plot(x1,y2)
+octave:9> plot(x1,y2,4)
+octave:10> plot(x1,y2,'k')
+octave:11> A^(-1)*b
+ans =
+
+   0.50000
+   0.00000
+
+octave:12> % The matrix A need not be invertible in general case
+octave:12> y3 = 1 - 2*x;
+error: 'x' undefined near line 2 column 12
+octave:12> y3 = 1 - 2*x1;
+octave:13> plot(x1,y3)
+octave:14> % 4x + 6y = 2
+octave:14> % y = (2 - 4x)/6 
+octave:14>  y3 = 1/3*(4 - 2*x1);
+octave:15> close all
+octave:16> plot(x1,y1)
+octave:17> hold on
+octave:18> plot(x1,y3)
+octave:19> Ay1y3 = [2 3;2 3]
+Ay1y3 =
+
+   2   3
+   2   3
+
+octave:20> Ay1y3^(-1)
+warning: inverse: matrix singular to machine precision, rcond = 0
+ans =
+
+   Inf   Inf
+   Inf   Inf
+
+octave:21> % A matrix need not have inverse always
+octave:21> 
+octave:21> % X-Y plane is SPAN of X axis and Y axis
+octave:21> A
+A =
+
+   2   3
+   4  -1
+
+octave:22> b
+b =
+
+   1
+   2
+
+octave:23> x
+error: 'x' undefined near line 1 column 1
+octave:23> x = A^(-1)*b
+x =
+
+   0.50000
+   0.00000
+
+octave:24> A
+A =
+
+   2   3
+   4  -1
+
+octave:25> b
+b =
+
+   1
+   2
+
+octave:26> 0.5*A(:,1) + 0*A(:,2) 
+ans =
+
+   1
+   2
+
+octave:27> b = [10 43]
+b =
+
+   10   43
+
+octave:28> b = [10; 43]
+b =
+
+   10
+   43
+
+octave:29> A
+A =
+
+   2   3
+   4  -1
+
+octave:30> A^(-1)*b
+ans =
+
+   9.9286
+  -3.2857
+
+octave:31> x = ans
+x =
+
+   9.9286
+  -3.2857
+
+octave:32> x(1)*A(:,1) + x(2,1)*A(:,2)     % Same as b
+ans =
+
+   10
+   43
+
+octave:33> b
+b =
+
+   10
+   43
+
+octave:34> % minimum Number of linearly independent vectors SPANning space is the dimension of the space 
+octave:34> 
+octave:34> 
+octave:34> A
+A =
+
+   2   3
+   4  -1
+
+octave:35> Ay1y3
+Ay1y3 =
+
+   2   3
+   2   3
+
+octave:36> 
+octave:36> 
+octave:36> 
+octave:36> u = A(:,1)
+u =
+
+   2
+   4
+
+octave:37> u = Ay1y3(:,1)
+u =
+
+   2
+   2
+
+octave:38> A
+A =
+
+   2   3
+   4  -1
+
+octave:39> rank(A)
+ans =  2
+octave:40> rank(Ay1y3)
+ans =  1
+octave:41> % Number of independent columns or rows is given by rank
+octave:41> % row rank = column rank
+octave:41> 
+octave:41> 
+octave:41> 
+octave:41> % Measuring the resistance
+octave:41> 
+octave:41> I  = 1:10
+I =
+
+    1    2    3    4    5    6    7    8    9   10
+
+octave:42> I = I'
+I =
+
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+
+octave:43> % V = I*100 + noise
+octave:43> 
+octave:43> rand()
+ans =  0.93519
+octave:44> 10*rand()
+ans =  3.9523
+octave:45> % V = I*(100 + 10*rand())
+octave:45> 
+octave:45> noise_in_R = 10*rand(10,1)
+noise_in_R =
+
+   0.30304
+   2.29260
+   9.02570
+   4.18472
+   4.48775
+   9.08403
+   4.50208
+   9.96729
+   3.64671
+   7.35412
+
+octave:46> V = I*100 + I.*noise_in_R
+V =
+
+    100.30
+    204.59
+    327.08
+    416.74
+    522.44
+    654.50
+    731.51
+    879.74
+    932.82
+   1073.54
+
+octave:47> % .* is Hadamard product
+octave:47> 
+octave:47> 
+octave:47> scatter(I,V)
+octave:48> scatter(I,V)
+octave:49> 
+octave:49> % Least square method
+octave:49> 
+octave:49> 
+octave:49> 
+octave:49> 
+

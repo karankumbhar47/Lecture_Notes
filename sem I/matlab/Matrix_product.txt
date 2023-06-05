@@ -1,0 +1,180 @@
+octave:1> u = (1:10)'
+u =
+
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+
+octave:2> v = 11:20
+v =
+
+   11   12   13   14   15   16   17   18   19   20
+
+octave:3> u*v
+ans =
+
+    11    12    13    14    15    16    17    18    19    20
+    22    24    26    28    30    32    34    36    38    40
+    33    36    39    42    45    48    51    54    57    60
+    44    48    52    56    60    64    68    72    76    80
+    55    60    65    70    75    80    85    90    95   100
+    66    72    78    84    90    96   102   108   114   120
+    77    84    91    98   105   112   119   126   133   140
+    88    96   104   112   120   128   136   144   152   160
+    99   108   117   126   135   144   153   162   171   180
+   110   120   130   140   150   160   170   180   190   200
+
+octave:4> % this is multiplication table
+octave:4> 
+octave:4> 
+octave:4> A = randn(2)
+A =
+
+  -0.706758  -0.592100
+   0.326717  -0.093199
+
+octave:5> I = eye(2)
+I =
+
+Diagonal Matrix
+
+   1   0
+   0   1
+
+octave:6> A*I
+ans =
+
+  -0.706758  -0.592100
+   0.326717  -0.093199
+
+octave:7> I*A
+ans =
+
+  -0.706758  -0.592100
+   0.326717  -0.093199
+
+octave:8> A^(-1)
+ans =
+
+  -0.35940   2.28329
+  -1.25991  -2.72544
+
+octave:9> A*A^(-1)
+ans =
+
+   1.00000   0.00000
+   0.00000   1.00000
+
+octave:10> I
+I =
+
+Diagonal Matrix
+
+   1   0
+   0   1
+
+octave:11> A^(-1)*A
+ans =
+
+   1.0000e+00  -5.5511e-17
+  -1.1102e-16   1.0000e+00
+
+octave:12> % numerically identity
+octave:12> 
+octave:12> 
+octave:12> % matrix multiplication as function composition
+octave:12> 
+octave:12> % u = 2x + 3y
+octave:12> % v = 6x + 7y
+octave:12> 
+octave:12> % x = z - 10w
+octave:12> % y = 5x + 7w
+octave:12> 
+octave:12> 
+octave:12> % Substitute x and y in the equations for u and v
+octave:12> % u = 2 (z-10w) + 3 (5z + 7w)
+octave:12> % u = 17z +1w 
+octave:12> 
+octave:12> % v = 6 (z - 10w) + 7 (5x + 7w)
+octave:12> % v = 41 z -11 w
+octave:12> 
+octave:12> 
+octave:12> % u = 17z +w 
+octave:12> % v = 41z -11w  
+octave:12> 
+octave:12> 
+octave:12> Axy2uv = [2 3; 6 7]
+Axy2uv =
+
+   2   3
+   6   7
+
+octave:13> Awz2xy = [1 -10;5 7]
+Awz2xy =
+
+    1  -10
+    5    7
+
+octave:14> Azw2uv = [17 1;41 -11]
+Azw2uv =
+
+   17   1
+   41  -11
+
+octave:15> Axy2uv*Azw2xy
+error: 'Azw2xy' undefined near line 1 column 8
+octave:15> Axy2uv*Awz2xy
+ans =
+
+   17    1
+   41  -11
+
+octave:16> A = Axy2uv
+A =
+
+   2   3
+   6   7
+
+octave:17> B = Awz2xy
+B =
+
+    1  -10
+    5    7
+
+octave:18> C = Azw2uv
+C =
+
+   17   1
+   41  -11
+
+octave:19> C
+C =
+
+   17   1
+   41  -11
+
+octave:20> A*B
+ans =
+
+   17    1
+   41  -11
+
+octave:21> % C = AB
+octave:21> % C(B^(-1))
+octave:21> %AB B^(-1)
+octave:21> % A (B*B^(-1))
+octave:21> % A
+octave:21> C*B^(-1)
+ans =
+
+   2.0000   3.0000
+   6.0000   7.0000
+
+
