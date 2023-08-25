@@ -1,0 +1,107 @@
+Q1] Ans
+  Given data
+  Assumption are :
+  1 Mb = 1000 Kb
+  1 Kb = 1000 bits
+
+  R1 = 10 Mbps 
+     = 10 x 1000 x 1000  bits/seconds
+     = 10000000 bits/seconds
+     = 1 X 10^7 bits/seconds
+
+  R2 = 200 Kbps
+     = 200 x 1000 bits/seconds
+     = 200000 bits/seconds
+     = 2 x 10^5 bits/seconds
+
+  R3 = 5 Mbps
+     = 5 x 1000 x 1000 bits/seconds
+     = 5000000 bits/seconds
+     = 5 x 10^6 bits/seconds
+
+  Part 1] Ans
+      Assumption :  No other traffic in the network
+      throughput for file transfer
+            = min(R1,R2,R3)
+            = R2
+            = 200 Kbps
+
+  Part 2] Ans
+      taking value of X as :
+              X = 5
+      file size = X million bytes
+                = 5 x 1000000 x 8 bits
+                = 40000000 bits
+                = 4 x 10^7 bits
+      time taken to transfer file from A to B 
+                = file size / throughput 
+                = 4 x 10^7 (bits) / 2 x 10^5 (bits/seconds)
+                = 200 seconds 
+
+  Part 3] Ans
+      If we double rate
+        throughput = 2 x R2
+                   = 400 Kbps
+                   = 400 x 1000 bits/seconds
+                   = 4 x 10^5 bits/seconds
+        time taken to transfer file from A to B 
+                   = file size / throughput
+                   = 4 x 10^7 (bits) / 4 x 10^5 (bits/seconds)
+                   = 100 seconds
+
+Q2] Ans
+  1. Straight-Through Ethernet Cable:
+        Wiring Configuration: 
+          The wiring arrangement is the same on both ends of the cable.This 
+          is for contecting different devices and transmit pins of one end of the cable match 
+          the receive pins of other, to ensure proper communication.
+
+        Usage:
+          - Generally connect devices in different layers  
+          - Straight-through cables are most commonly used to connect different types of devices,
+            such as a computer to a switch, router, or hub. 
+          - Common Use Cases: Connecting a computer to a switch, router, or hub; connecting a 
+            printer to a switch.
+
+
+  2. Crossover Ethernet Cable:
+      Wiring Configuration: 
+        The wiring arrangement is different on the two ends of the cable. 
+        The transmit pins on one end are connected to the receive pins on the other end, and 
+        vice versa.
+
+      Usage: 
+        - Generally used to connect devices in same layers
+        - Crossover cables are used to connect similar devices directly to each other, without 
+          the need for an intermediate device like a switch or a router. They allow devices to 
+          communicate without requiring a network hub or switch to reverse the transmit and 
+          receive signals.
+        - Common Use Cases: Connecting two computers directly to each other, connecting two 
+          switches together without an intermediate device, connecting two routers together.
+
+  3.Rollover Ethernet Cable (Console Cable):
+      Wiring Configuration:
+        A rollover cable is used for serial console connections to networking equipment like 
+        routers and switches. We call it rollover, because pins of one end are reversed from the 
+        other.
+
+      Usage:
+        - Rollover cables are primarily used to establish a direct console connection to network
+          equipment. This connection allows administrators to access the device's command-line
+          interface for configuration and troubleshooting.
+        - Common Use Cases: Connecting a computer to the console port of a router or switch for 
+          configuring network settings.
+
+
+  
+
+
+
+
+
+
+  
+
+        
+ 
+  

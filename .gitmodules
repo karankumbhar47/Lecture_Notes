@@ -1,0 +1,6 @@
+[submodule "sem V/Machine Learning CS550/CS550"]
+	path = sem V/Machine Learning CS550/CS550
+	url = git@github.com:gagan-iitb/CS550.git
+[submodule "sem V/Machine Learning CS550/handson-ml3"]
+	path = sem V/Machine Learning CS550/handson-ml3
+	url = git@github.com:ageron/handson-ml3.git
