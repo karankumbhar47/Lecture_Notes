@@ -3,5 +3,6 @@ playlist/
 *.zip
 sem V/Machine Learning CS550/handson-ml3/*
 */output/*
+*.tar
 
 
