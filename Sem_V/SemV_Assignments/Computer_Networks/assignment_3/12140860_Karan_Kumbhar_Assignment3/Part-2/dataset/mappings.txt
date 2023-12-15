@@ -1,0 +1,15 @@
+www.youtube.com  216.58.192.206
+www.facebook.com  31.13.65.1
+www.twitter.com  104.244.42.65
+www.instagram.com  34.236.127.201
+www.linkedin.com  108.174.10.10
+www.reddit.com  151.101.65.140
+www.wikipedia.org  208.80.154.224
+www.github.com  140.82.113.3
+www.amazon.com 52.204.133.138
+www.microsoft.com  40.76.4.15
+www.apple.com  17.253.144.10
+www.netflix.com  52.36.199.116
+www.cnn.com  151.101.1.67
+www.yahoo.com    98.138.219.231
+www.google.com   172.217.160.78

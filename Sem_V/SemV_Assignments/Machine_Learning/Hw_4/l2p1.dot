@@ -1,0 +1,31 @@
+digraph G {
+    rankdir = LR;
+    splines = line;
+    
+    node [fixedsize = true; shape = circle; style = solid;];
+    
+    
+    subgraph cluster_1 {
+        color = white;
+        node [color = red2;];
+        a21 [label = "a21";];
+        a22 [label = "a22";];
+        label = "Hidden layer 1";
+    }
+    
+    subgraph cluster_2 {
+        color = white;
+        node [color = green2;];
+        a31 [label = "a31";];
+        a31 [xlabel = "b31";];
+        a33 [label = "a33";];
+        a33 [xlabel = "b33";];
+        a32 [label = "a32";];
+        a32 [xlabel = "b32";];
+        label = "Hidden layer 2";
+    }
+
+    a21 -> a31[label="w31"];
+    a21 -> a32[label="w41"];
+    a21 -> a33[label="w51"];
+}

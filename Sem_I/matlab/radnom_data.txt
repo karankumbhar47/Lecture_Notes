@@ -1,0 +1,217 @@
+hari@hari:~$ octave-cli
+
+GNU Octave, version 4.2.2
+Copyright (C) 2018 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/get-involved.html
+
+Read http://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+octave:1> 
+octave:1> % Distribution of the data  plot histogram
+octave:1> 
+octave:1> a = rand(1,100);
+octave:2> 
+octave:2> hist(a)
+octave:3> hist(a, 20)
+octave:4> 
+octave:4> 
+octave:4> mean(a)
+ans =  0.47223
+octave:5> 
+octave:5> var(a)
+ans =  0.10346
+octave:6> 
+octave:6> 
+octave:6> % Gaussian random variable
+octave:6> 
+octave:6> 
+octave:6> g = randn(1,1000);
+octave:7> 
+octave:7> hist(g,50)
+octave:8> 
+octave:8> 
+octave:8> mean(g)
+ans =  0.0047919
+octave:9> 
+octave:9> 
+octave:9> var(g)
+ans =  1.0262
+octave:10> 
+octave:10> 
+octave:10> 
+octave:10> % Gaussian has the distribution function 
+octave:10> 
+octave:10> 
+octave:10> % Unifrom random variable
+octave:10> 
+octave:10> 
+octave:10> a = rand(1,1000);
+octave:11> 
+octave:11> hist(a,50)
+octave:12> 
+octave:12> 
+octave:12> mean(a)
+ans =  0.50753
+octave:13> 
+octave:13> 
+octave:13> sum(a)/1000
+ans =  0.50753
+octave:14> 
+octave:14> 
+octave:14> b = a + 10
+b =
+
+ Columns 1 through 10:
+
+   10.596   10.805   10.191   10.848   10.467   10.904   10.951   10.853   10.790   10.368
+
+ Columns 11 through 20:
+
+   10.439   10.498   10.786   10.528   10.496   10.240   10.157   10.860   10.098   10.909
+
+ Columns 21 through 30:
+
+   10.312   10.204   10.146   10.751   10.379   10.487   10.936   10.653   10.396   10.279
+
+ Columns 31 through 40:
+
+   10.631   10.627   10.254   10.211   10.626   10.217   10.207   10.437   10.542   10.892
+
+ Columns 41 through 50:
+
+   10.720   10.304   10.588   10.446   10.618   10.115   10.018   10.861   10.404   10.419
+
+ Columns 51 through 60:
+
+   10.790   10.796   10.355   10.780   10.631   10.183   10.127   10.457   10.266   10.870
+
+ Columns 61 through 70:
+octave:15> b = a + 10;
+octave:16> 
+octave:16> 
+octave:16> mean(a)
+ans =  0.50753
+octave:17> 
+octave:17> % mean = sum(a)/1000
+octave:17> 
+octave:17> % mean(b) = sum(b)/1000 = sum(a+ 10)/1000 = sum(a)/1000 + 1000*10/1000
+octave:17> 
+octave:17> % mean(b) = mean(a) + 10
+octave:17> 
+octave:17> mean(b)
+ans =  10.508
+octave:18> 
+octave:18> % by adding a constant value to random data will shift the mean by corresponding value
+octave:18> 
+octave:18> 
+octave:18> hist(a)
+octave:19> figure;
+octave:20> hist(b)
+octave:21> figure;
+octave:22> hist(g,50)
+octave:23> 
+octave:23> 
+octave:23>  rand(1,10)
+ans =
+
+ Columns 1 through 9:
+
+   0.14053   0.80319   0.25049   0.95797   0.55583   0.28005   0.22324   0.43537   0.77528
+
+ Column 10:
+
+   0.58033
+
+octave:24> hist(ans)
+octave:25> 
+octave:25> 
+octave:25> % Six possible outcomes in a throw of dice
+octave:25> 
+octave:25> % 1,2,3,4,5,6
+octave:25> 
+octave:25> hist(g)
+octave:26> 
+octave:26> 
+octave:26> 6*rand()
+ans =  0.65968
+octave:27> 
+octave:27> 6*rand()
+ans =  3.5403
+octave:28> ceil(6*rand())
+ans =  3
+octave:29> 
+octave:29> 
+octave:29> ceil(6*rand())
+ans =  3
+octave:30> 
+octave:30> 
+octave:30> Dice_Throws = ceil(6*rand(1,10000));
+octave:31> 
+octave:31> 
+octave:31> 
+octave:31> hist(Dice_Throws,10)
+octave:32> hist(Dice_Throws,100)
+octave:33> 
+octave:33> 
+octave:33> % variance = mean((x - mean(x))^2)
+octave:33> 
+octave:33> % x + c then mean(x+c) = mean(x) + c 
+octave:33> 
+octave:33> % x + c variance remains same. 
+octave:33> 
+octave:33> % kx then mean(kx) = k mean(x) 
+octave:33> 
+octave:33> % kx then variance(kx) = k^2 var(x)
+octave:33> 
+octave:33> 
+octave:33> g = randn(1,1000);
+octave:34> 
+octave:34> y = g + 100;
+octave:35> 
+octave:35> hist(y,50)
+octave:36> hist(g,50)
+octave:37> hist(3*g,50)
+octave:38> 
+octave:38> 
+octave:38> 
+octave:38> % Adding random data
+octave:38> 
+octave:38> % In general if you add two random variables the distribution changes
+octave:38> 
+octave:38> a = rand(1,1000);
+octave:39> b = rand(1,1000);
+octave:40> 
+octave:40> hist(a,50)
+octave:41> figure;
+octave:42> hist(a+b,50)
+octave:43> % The way they change is given by the convolution of probability density functions
+octave:43> 
+octave:43> 
+octave:43> % Important : When two Gaussian random variables added result is also gaussian,  y = a + b if a, and b are gaussian
+octave:43> 
+octave:43> % Then y is also gaussian
+octave:43> 
+octave:43> 
+octave:43> g = randn(1,1000);
+octave:44> s = randn(1,1000);
+octave:45> y = g + s ;
+octave:46> 
+octave:46> hist(y,50)
+octave:47> hist(y,50)
+octave:48> 
+octave:48> 
+octave:48> % Practical application noise is modelled as Gaussian
+octave:48> 
+octave:48> 
+octave:48> 
+

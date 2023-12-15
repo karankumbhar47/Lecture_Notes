@@ -1,0 +1,806 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+% \setmathfont{TeX Gyre Termes Math}
+\usepackage[math-style=ISO]{unicode-math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{Problem}
+\newenvironment{Solution}{\textbf{Solution.}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  breaklines=true,
+  frame=tb,
+  numbers=none,
+  captionpos=b,
+  tabsize=2,
+  extendedchars=false,
+  inputencoding=utf8,
+  escapeinside={\%*}{*)},
+  morekeywords={as}
+}
+
+\setlist[enumerate]
+\lstset{style=mystyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{CS550 Machine Learning}                            % <-- course name   
+\newcommand\hwnumber{  2+3}                                 % <-- homework number
+\newcommand\Information{Karan Sunil Kumbhar }                        % <-- personal information
+\newcommand\Informatio{Id. - 12140860}
+\newcommand\Informati{BTech CSE}
+\newcommand\Informat{2025}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=1.5cm]{iitbh.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{case}{Case}
+\newcommand{\assign}{:=}
+\newcommand{\infixiff}{\text{ iff }}
+\newcommand{\nobracket}{}
+\newcommand{\backassign}{=:}
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextbf}[1]{\text{{\bfseries{#1}}}}
+\newcommand{\tmtextit}[1]{\text{{\itshape{#1}}}}
+
+\newenvironment{itemizedot}{\begin{itemize} \renewcommand{\labelitemi}{$\bullet$}\renewcommand{\labelitemii}{$\bullet$}\renewcommand{\labelitemiii}{$\bullet$}\renewcommand{\labelitemiv}{$\bullet$}}{\end{itemize}}
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active \def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+\begin{document}
+\justify
+\sloppy
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3cm}
+
+        \Huge
+        \textbf{Machine Learning}
+
+        \vspace{1cm}
+        \huge
+        Homework\hwnumber
+
+        \vspace{1.5cm}
+        \Large
+
+        \textbf{\Information}\\                      % <-- author
+        \textbf{\Informatio}\\
+        \textbf{\Informati} \\
+        \textbf{\Informat} \\
+
+        \vfill
+
+        \course \
+
+        \vspace{1cm}
+
+        \includegraphics[width=0.4\textwidth]{iitbh.png}
+        \\
+
+        \Large
+
+        \today
+
+    \end{center}
+\end{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+
+\begin{Problem}
+    \textbf{Ch4\_Q4}
+\end{Problem}
+
+\begin{Solution}
+    \textbf{(a) Answer:\\Given\\}
+    To calculate the fraction of available observations for prediction, we need to determine the fraction of the interval \([0, 1]\) that falls within the 10\% range of \(X\) closest to the test observation. \\
+
+    Let's calculate:
+    \begin{enumerate}
+        \item To find the fraction of the available observations in this range, we calculate the length of the interval \([x - 0.05, x + 0.05]\) and divide it by the length of the entire interval \([0, 1]\).
+    \end{enumerate}
+
+    So, on average, the fraction of available observations we will use to make the prediction can be represented as:
+
+    \[
+        \text{Fraction of available observations} = \frac{\text{Length of } [x - 0.05, x + 0.05]}{\text{Length of } [0, 1]}
+    \]
+
+    Now just calculate for
+    \begin{align*}
+        x                            & = 0.6         \\
+        \text{range of observations} & = [0.55,0.65]
+    \end{align*}
+    Average,fraction of the available observations are, as we are using 10\% range and also X is uniformly distributed
+    \begin{align*}
+         & = \frac{\text{length}[0.55,0.65]}{\text{length[0,1]}} \quad
+        = \frac{0.1}{1} \times 100\quad
+        = \textbf{10\%}
+    \end{align*}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+
+\begin{Problem}
+    \textbf{Ch4\_Q4}
+\end{Problem}
+
+\begin{Solution}
+
+    \textbf{(b) Answer:\\Given}\newline
+    To find the fraction of available observations used to make the prediction when we have two features \(X_1\) and \(X_2\) uniformly distributed on \([0, 1] \times [0, 1]\), and we use observations within 10\% of the range of \(X_1\) and \(X_2\) closest to the test observation, we need to calculate the proportion of the total area that falls within these ranges.
+
+    Here's how we can calculate it:
+    \begin{enumerate}
+        \item Calculate the range of \(X_1\) and \(X_2\) within 10\% of their respective total ranges:
+              \begin{enumerate}
+                  \item For \(X_1\), the range within 10\% is \([0.45, 0.55]\).
+                  \item For \(X_2\), the range within 10\% is \([0.45, 0.55]\).
+              \end{enumerate}
+
+        \item  Calculate the area of the square formed by these ranges:\newline
+              Area = \((0.55 - 0.45) \times (0.55 - 0.45) = 0.1 \times 0.1 = 0.01\)
+    \end{enumerate}
+
+    So, on average, we will use observations within 10\% of the range of \(X_1\) and within 10\% of the range of \(X_2\) closest to the test observation, which corresponds to approximately \textbf{1\%} of the total area of the square formed by the ranges \([0, 1] \times [0, 1]\).
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch4\_Q4}
+\end{Problem}
+
+\begin{Solution}
+
+    \textbf{(c) Answer:\\Given}\newline
+    To find the fraction of available observations used to make the prediction when we have $p = 100$ features, and we use observations within $10\%$ of each feature's range closest to the test observation, we need to calculate the proportion of the total volume that falls within these ranges.
+
+    Here's how we can calculate it:
+    \begin{enumerate}
+        \item Calculate the range of each feature within $10\%$ of its total range:
+              For each feature, the range within $10\%$ is $[0.45, 0.55]$ ($10\%$ of the total range).
+
+        \item Calculate the volume of the hypercube formed by these ranges:
+              \begin{align*}
+                  \text{Volume}   & = (0.55 - 0.45)^{100} \quad
+                  = (0.1)^{100}                                                 \\
+                  \text{Fraction} & = \frac{\text{Volume}}{\text{Total Volume}} \\
+                                  & = \frac{0.1^{100}}{1^{100}} \quad
+                  = \textbf\{0.1^{100}\}
+              \end{align*}
+    \end{enumerate}
+    This volume represents the fraction of available observations used to make the prediction. In practice, as $p$ increases, the fraction of available observations used for prediction becomes exponentially small. The fraction of observations used for prediction decreases significantly as the number of features increases.
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch4\_Q4}
+\end{Problem}
+
+\begin{Solution}\\
+    \textbf{(d) Answer}
+    \begin{enumerate}
+        \item \textbf{Part (a) - Single Feature ($p = 1$):} In this scenario, where we have only one feature, the curse of dimensionality is not a significant concern. We can effectively use observations that are within 10\% of the feature's range from the test observation, resulting in a relatively large fraction of available observations for prediction. This is because the range along a single dimension is still manageable.
+
+        \item \textbf{Part (b) - Two Features ($p = 2$):} When we have two features, we find that we need to consider two separate 10\% ranges for each feature. The fraction of available observations for prediction starts to decrease compared to the single-feature case. However, it's still possible to find observations within these ranges. The curse of dimensionality is not a severe issue in this case.
+
+        \item \textbf{Part (c) - High-Dimensional Space ($p = 100$):} In this scenario, with 100 features, we observe a significant problem. The fraction of available observations for prediction becomes extremely small. Due to the curse of dimensionality, the volume within 10\% of each feature's range becomes tiny in high-dimensional space. This results in very few training observations ``near'' any given test observation.
+
+    \end{enumerate}
+
+    \textbf{Conclusion:} As we increase the number of features, the fraction of available observations within a ``neighborhood'' around a test observation diminishes rapidly. In high-dimensional spaces, KNN struggles because there are very few training observations that are close or similar to any test observation. This makes it challenging to find meaningful neighbors for prediction. The curse of dimensionality severely limits the effectiveness of KNN in such scenarios.
+
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch4\_Q4}
+\end{Problem}
+
+\begin{Solution}\newline
+    \textbf{(e) Answer\\}
+    In general, for a hypercube centered around a test observation that contains, on average, 10\% of the training observations, the length of each side of the hypercube can be calculated as follows:
+
+    length of each side of the p dimension hypercube is as follows-\newline
+    consider follwing variables :-
+    \begin{align*}
+        V & = \text{total Volume } ,            &
+        v & = \text{fractional volume}            \\
+        X & = \text{side of big hypercube} ,    &
+        x & = \text{side of fraction hypercube}
+    \end{align*}
+
+    Calculations :-
+    \begin{align*}
+        X              & = 1                     \\
+        V              & = X^p                   \\
+                       & = 1^p \quad
+        = 1                                      \\
+        v              & = (10\%)\times V        \\
+                       & = (0.1)\times 1         \\
+                       & = 0.1                   \\
+        \text{also } v & = x^p                   \\
+        \therefore  x  & = v^{\frac{1}{p}} \quad
+        = (0.1)^{\frac{1}{p}}
+    \end{align*}
+    \begin{enumerate}
+        \item For $p = 1$ (1-dimensional hypercube):
+              The length of each side of the hypercube is simply 10\% of the range along the single dimension. From part (a), we found that for $p = 1$, this is $0.1$.
+        \item For $p = 2$ (2-dimensional hypercube):
+              \begin{align*}
+                  x & = (0.1)^\frac{1}{2}
+                  = 0.316
+              \end{align*}
+        \item For $p = 100$ (100-dimensional hypercube):
+              The fraction of available observations for prediction became very small, in this case
+              \begin{align*}
+                  x & = (0.1)^\frac{1}{100}
+                  = 0.977
+              \end{align*}
+    \end{enumerate}
+    \textbf{Comment:}
+    The length of each side of the hypercube increases as the dimensionality (p) increases. In the case of the 100-dimensional hypercube, the side length is almost equal to 1, meaning that the hypercube covers almost the entire original space. This is opposite of KNN  which demonstrates the "curse of dimensionality," where as the number of dimensions increases, we consider less observations.
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch4\_Q5}
+\end{Problem}
+\begin{Solution}
+
+    \begin{enumerate}
+        \item \textbf{If the Bayes decision boundary is linear,} we expect \textbf{QDA} to perform better on the training set and \textbf{LDA} on the test set compared to \textbf{QDA}.
+
+              \begin{itemize}
+                  \item \textbf{Training Set:} LDA assumes that the classes have the same covariance matrix (homoscedasticity) and estimates a single covariance matrix. QDA, on the other hand, estimates a separate covariance matrix for each class. As QDA is more flexible it will give more accuracy than LDA on train data
+                  \item \textbf{Test Set:} LDA is expected to generalize better to the test set as well. QDA, with its more flexible approach of estimating separate covariances, might overfit the training data when the true decision boundary is linear, leading to poorer performance on unseen test data.
+              \end{itemize}
+
+        \item
+              \textbf{If the Bayes decision boundary is non-linear,} we expect \textbf{QDA} to perform better on the training  and test set compared to \textbf{LDA}.
+
+              \begin{itemize}
+                  \item \textbf{Training Set:} When the Bayes decision boundary is non-linear, LDA's assumption of a linear decision boundary is incorrect. LDA models the data with the assumption of equal covariance matrices for all classes, which is too restrictive for non-linear decision boundaries. QDA, on the other hand, can capture non-linear decision boundaries by estimating separate covariance matrices for each class.
+
+                  \item \textbf{Test Set:} On the test set,as here the non-linearity is present, So QDA is likely to outperform LDA because it can adapt to the non-linear patterns. \end{itemize}
+
+        \item
+              \textbf{In general, as the sample size $n$ increases,} we expect \textbf{the test prediction accuracy of QDA will improve relative to LDA.}
+
+              \begin{itemize}
+                  \item \textbf{Reasoning:} As the sample size $n$ increases, both LDA and QDA models will have more data to learn from. However, QDA, being a more flexible model that allows for different covariance matrices for each class, can better capture complex relationships within the data, including non-linearities and variations in class-specific variances.
+
+                  \item \textbf{LDA's Limitation:} LDA, on the other hand, assumes equal covariance matrices for all classes, which can be restrictive when the data exhibits varying class-specific variances or non-linear decision boundaries. As the sample size increases, the limitations of LDA become more significant.
+              \end{itemize}
+              \newpage
+        \item
+              \textbf{False}.
+
+              As here the Bayes decision boundary is linear, Linear Discriminant Analysis (LDA) is expected to perform better on the test error rate compared to Quadratic Discriminant Analysis (QDA). This is due to the fact that LDA assumes that the class covariances are equal, meaning that the covariance matrix for each class is the same. This assumption simplifies the model and forces the decision boundary to be linear.
+              \\
+
+              On the other hand, QDA allows for different covariance matrices for each class, making it more flexible and capable of modeling non-linear decision boundaries. However, when the true decision boundary is linear, the additional flexibility of QDA may lead to overfitting, especially if the sample size is small. This can result in a higher test error rate for QDA compared to LDA.
+
+    \end{enumerate}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch4\_Q12}
+\end{Problem}
+
+\begin{Solution}\newline
+    \textbf{Given}\newline
+
+    Given Model
+    \begin{align*}
+        \widehat{Pr}(Y = orange | X=x) & = \frac{e^{\hat{\beta_0}+\hat{\beta_1}x}}{1 + e^{\hat{\beta_0}+\hat{\beta_1}x}}
+    \end{align*}
+
+    Friend's Model
+    \[
+        Pr(Y = \text{orange}|X = x) = \frac{e^{\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x}}{e^{\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x} + e^{\hat{\alpha}_{\text{apple}0} + \hat{\alpha}_{\text{apple}1} x}}
+    \]
+    \begin{enumerate}
+        \item
+              log-odds of orange versus apple in given model:
+              \begin{align*}
+                  \text{log odds}(\text{orange vs. apple})
+                   & = \log\left(\frac{Pr(Y = \text{orange}|X = x)}{Pr(Y = \text{apple}|X = x)}\right)     \\
+                   & = \log\left(\frac{Pr(Y = \text{orange}|X = x)}{1- Pr(Y = \text{orange}|X = x)}\right) \\
+                   & = \log\left(\frac{\frac
+                      {e^{\hat{B_0}+\hat{B_1}x}}{1+e^{\hat{B_0}+\hat{B_1}x}}
+                  }{
+                      1 - \frac
+                      {e^{\hat{B_0}+\hat{B_1}x}}{1+e^{\hat{B_0}+\hat{B_1}x}}
+                  }\right)                                                                                 \\
+                   & = \log\left(\frac{\frac
+                      {e^{\hat{B_0}+\hat{B_1}x}}{1+e^{\hat{B_0}+\hat{B_1}x}}
+                  }{
+                      \frac
+                      {1}{1+e^{\hat{B_0}+\hat{B_1}x}}
+                  }\right)                                                                                 \\
+                   & = \log\left(
+                  e^{\hat{B_0}+\hat{B_1}x}
+                  \right)                                                                                  \\
+                   & = \hat{B_0}+\hat{B_1}x
+              \end{align*}
+
+        \item
+              Friend's model (softmax formulation) yields:
+              \begin{align*}
+                  \text{log-odds}(\text{orange vs. apple})
+                   & = \log\left(\frac{Pr(Y = \text{orange}|X = x)}{Pr(Y = \text{apple}|X = x)}\right)                                                            \\
+                   & = \log\left(\frac{Pr(Y = \text{orange}|X = x)}{1- Pr(Y = \text{orange}|X = x)}\right)                                                        \\
+                   & = \log\left(\frac{
+                      \frac
+                      {e^{\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x}}{
+                          {e^{\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x}}+
+                          e^{\hat{\alpha}_{\text{apple}0} +\hat{\alpha}_{\text{apple}1} x}
+                      }}{
+                      1- \frac
+                      {e^{\hat{\alpha}_{\text{orange}0}+\hat{\alpha}_{\text{orange}1} x}}
+                      {e^{\hat{\alpha}_{\text{orange}0}+\hat{\alpha}_{\text{orange}1} x}+
+                          e^{\hat{\alpha}_{\text{apple}0} + \hat{\alpha}_{\text{apple}1} x}}}
+                  \right)                                                                                                                                         \\
+                   & = \log\left(\frac{\frac{e^{\hat{\alpha}_{\text{orange}0} +
+                              \hat{\alpha}_{\text{orange}1} x}}{e^{\hat{\alpha}_{\text{orange}0} +
+                              \hat{\alpha}_{\text{orange}1} x} + e^{\hat{\alpha}_{\text{apple}0} +
+                              \hat{\alpha}_{\text{apple}1} x}}}{\frac{e^{\hat{\alpha}_{\text{apple}0}+
+                              \hat{\alpha}_{\text{apple}1} x}}{e^{\hat{\alpha}_{\text{orange}0}+
+                              \hat{\alpha}_{\text{orange}1} x} + e^{\hat{\alpha}_{\text{apple}0} +
+                  \hat{\alpha}_{\text{apple}1} x}}}\right)                                                                                                        \\
+                   & = \log\left(\frac
+                  {e^{\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x}}{e^{\hat{\alpha}_{\text{apple}0} + \hat{\alpha}_{\text{apple}1} x}}\right) \\
+                   & = (\hat{\alpha}_{\text{orange}0} - \hat{\alpha}_{\text{apple}0}) + (\hat{\alpha}_{\text{orange}1} - \hat{\alpha}_{\text{apple}1})x
+              \end{align*}
+
+              So, the log-odds of orange versus apple in given /model is $\hat{\beta}_0 + \hat{\beta}_1 x$. and in friend's model is $(\hat{\alpha}_{\text{orange}0} - \hat{\alpha}_{\text{apple}0}) + (\hat{\alpha}_{\text{orange}1} - \hat{\alpha}_{\text{apple}1})x$
+
+        \item
+              The coefficient estimates in Friend's model can be inferred by comparing the two models. In given model, $\hat{\beta}_0 = 2$ and $\hat{\beta}_1 = -1$. To find the equivalent coefficients in Friend's softmax model, we can match the log odds expressions:
+
+              From the previous answer, we know that in given model, the log odds of orange versus apple is:
+              \[
+                  \text{log-odds}(\text{orange vs. apple}) = \hat{\beta}_0 + \hat{\beta}_1 x
+              \]
+
+              In Friend's model, the log odds of orange versus apple is:
+              \[
+                  \text{log odds}(\text{orange vs. apple}) = (\hat{\alpha}_{\text{orange}0} - \hat{\alpha}_{\text{apple}0}) + (\hat{\alpha}_{\text{orange}1} - \hat{\alpha}_{\text{apple}1})x
+              \]
+
+              Comparing these two expressions, we can equate the coefficients:
+
+              \[
+                  \begin{align*}
+                      \hat{\beta}_0 & = \hat{\alpha}_{\text{orange}0} - \hat{\alpha}_{\text{apple}0} \\
+                      \hat{\beta}_1 & = \hat{\alpha}_{\text{orange}1} - \hat{\alpha}_{\text{apple}1}
+                  \end{align*}
+              \]
+
+              Now, with $\hat{\beta}_0 = 2$ and $\hat{\beta}_1 = -1$ from given model, we can calculate the equivalent coefficients for Friend's model:
+              \[
+                  \begin{align*}
+                      \hat{\alpha}_{\text{orange}0} & = 2 + \hat{\alpha}_{\text{apple}0}  \\
+                      \hat{\alpha}_{\text{orange}1} & = -1 + \hat{\alpha}_{\text{apple}1}
+                  \end{align*}
+              \]
+
+              These equations represent the coefficient estimates in Friend's model in terms of given model's coefficients $\beta_0$ and $\beta_1$.
+              \pagebreak
+
+        \item
+              In Friend's model, the coefficient estimates are given as:
+
+              \[
+                  \begin{align*}
+                      \hat{\alpha}_{\text{orange}0} & = 1.2 \\
+                      \hat{\alpha}_{\text{orange}1} & = -2  \\
+                      \hat{\alpha}_{\text{apple}0}  & = 3   \\
+                      \hat{\alpha}_{\text{apple}1}  & = 0.6
+                  \end{align*}
+              \]
+
+              To find the equivalent coefficients in given logistic regression model, we can use the relationships established earlier:
+
+              \[
+                  \begin{align*}
+                      \hat{\beta}_0 & = \hat{\alpha}_{\text{orange}0} - \hat{\alpha}_{\text{apple}0} \\
+                      \hat{\beta}_1 & = \hat{\alpha}_{\text{orange}1} - \hat{\alpha}_{\text{apple}1}
+                  \end{align*}
+              \]
+
+              Now, we can calculate the coefficients in given model:
+
+              \[
+                  \begin{align*}
+                      \hat{\beta}_0 & = 1.2 - 3 = -1.8  \\
+                      \hat{\beta}_1 & = -2 - 0.6 = -2.6
+                  \end{align*}
+              \]
+
+              So, in given logistic regression model, the coefficient estimates are $\hat{\beta}_0 = -1.8$ and $\hat{\beta}_1 = -2.6$.
+
+        \item
+              In given model, you have:
+              \[
+                  \begin{align*}
+                      \Pr(Y = \text{orange}|\mathbf{X}) & = \frac{\exp(\hat{\beta}_0 + \hat{\beta}_1 x)}{1 + \exp(\hat{\beta}_0 + \hat{\beta}_1 x)}
+                  \end{align*}
+              \]
+
+              And in your friend's model, you have:
+              \[
+                  \begin{align*}
+                      \Pr(Y = \text{orange}|\mathbf{X}) & = \frac{\exp(\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x)}{\exp(\hat{\alpha}_{\text{orange}0} + \hat{\alpha}_{\text{orange}1} x) + \exp(\hat{\alpha}_{\text{apple}0} + \hat{\alpha}_{\text{apple}1} x)}
+                  \end{align*}
+              \]
+
+              To find the agreement between the predicted class labels, you need to compare the predicted probabilities for each observation in both models. Specifically, you're interested in when both models predict the same class.
+
+              Let \(p_1\) be the predicted probability of the orange class from your model and \(p_2\) be the predicted probability of the orange class from your friend's model.
+
+              The fraction of the time both models predict the same class can be calculated as follows:
+              {\footnotesize
+              \begin{align*}
+                  \text{Agreement Fraction} = & \text{Pr(Y = orange in your model) × Pr(Y = orange in your friend’s model)} \\
+                                              & + \text{Pr(Y = apple in your model) × Pr(Y = apple in your friend’s model)}
+              \end{align*}
+              }
+
+
+              You can calculate this fraction using the probabilities from both models. It represents the proportion of times your model's predictions agree with your friend's model when applied to the same test data set.
+
+              To calculate the fraction of the time both models predict the same class, we need to find the values of \(x\) for which the predicted probabilities from both models are the same. Let's set up the equations for both models and find the values of \(x\) that satisfy them.
+
+              In your model:
+              \[
+                  \Pr(Y = \text{orange}) = \frac{\exp(2 - x)}{1 + \exp(2 - x)}
+              \]
+              \[
+                  \Pr(Y = \text{apple}) = \frac{1}{1 + \exp(2 - x)}
+              \]
+
+              In your friend's model:
+              \[
+                  \Pr(Y = \text{orange}) = \frac{\exp(1.2 - 2x)}{\exp(1.2 - 2x) + \exp(3 + 0.6x)}
+              \]
+              \[
+                  \Pr(Y = \text{apple}) = \frac{\exp(3 + 0.6x)}{\exp(1.2 - 2x) + \exp(3 + 0.6x)}
+              \]
+
+              Now, we want to find the values of \(x\) for which:
+              \[
+                  \Pr(Y = \text{orange}) = \Pr(Y = \text{apple})
+              \]
+
+              Let's equate the probabilities from both models and solve for \(x\):
+              \[
+                  \frac{\exp(2 - x)}{1 + \exp(2 - x)} = \frac{\exp(1.2 - 2x)}{\exp(1.2 - 2x) + \exp(3 + 0.6x)}
+              \]
+
+              Solving this equation for \(x\) will give us the values at which both models predict the same class. The fraction of the time they agree will depend on how many solutions there are and the range of \(x\) values considered.
+
+
+
+    \end{enumerate}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch9\_Q2}
+\end{Problem}
+
+\begin{Solution}
+    \begin{enumerate}
+        \item
+              Equation of cureve
+              \[(1 + X_1 )^2 + (2 - X_2 )^2 = 4\]
+              \lstinputlisting[style=python, caption={}]{question_2a.py}
+              \newpage
+        \item
+              Plotting Two regions
+              \[\text{Region1 => }(1 + X_1 )^2 + (2 - X_2 )^2 > 4,\]
+              \[\text{Region2 => }(1 + X_1 )^2 + (2 - X_2 )^2 \leq  4,\]
+              \lstinputlisting[style=python, caption={}]{question_2b.py}
+              \newpage
+        \item
+              Classification of Points
+              \begin{table}[h]
+                  \centering
+                  \begin{tabular}{|c|c|c|}
+                      \hline
+                      \textbf{Point} & \textbf{Class} \\
+                      \hline
+                      (0, 0)         & Blue           \\
+                      \hline
+                      (-1, 1)        & Red            \\
+                      \hline
+                      (2, 2)         & Blue           \\
+                      \hline
+                      (3, 8)         & Blue           \\
+                      \hline
+                  \end{tabular}
+              \end{table}
+              \lstinputlisting[style=python, caption={}]{question_2c.py}
+              \newpage
+        \item
+              \textbf{Argument}
+
+              The decision boundary given in part (c) is defined as:
+
+              \[ (1 + X_1)^2 + (2 - X_2)^2 > 4 \]
+
+              This decision boundary is nonlinear when considered directly in terms of \(X_1\) and \(X_2\). However, when we expand and simplify the equation, it becomes linear in terms of  \(X_1\), \(X_1^2\), \(X_2\), and \(X_2^2\).
+
+              Let's perform the expansion:
+              \[ (1 + X_1)^2 + (2 - X_2)^2 > 4 \]
+              \[ 1 + 2X_1 + X_1^2 + 4 - 4X_2 + X_2^2 > 4 \]
+              \[ 2X_1 - 4X_2 + X_1^2 + X_2^2 + 1 > 0 \]
+
+              Now, if we consider new variables for \(X_1\), \(X_2\),\(X_1^2\), \(X_2^2\) as \(X_1\), \(X_2\), \(X_3\), and \(X_4\) respectively, we get:
+
+              \[ 2X_1 - 4X_2 + X_3 + X_4 + 1 > 0 \]
+
+              This is a linear equation in terms of \(X_1\), \(X_2\),\(X_3\) and \(X_4\). Thus, while the original decision boundary is nonlinear in \(X_1\) and \(X_2\), it becomes linear when expressed in terms of \(X_1\), \(X_1^2\), \(X_2\), and \(X_2^2\), or equivalently, \(X_1\), \(X_2\),\(X_3\) and \(X_4\).
+    \end{enumerate}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\subsubsection*{}
+\begin{Problem}
+    \textbf{Ch9\_Q3}
+\end{Problem}
+
+\begin{Solution}
+    \begin{enumerate}
+        \item
+              \text{Observations with Class Labels}
+              \begin{table}[ht]
+                  \centering
+                  \begin{tabular}{|c|c|c|c|}
+                      \hline
+                      Obs. & $X_1$ & $X_2$ & $Y$  \\
+                      \hline
+                      1    & 3     & 4     & Red  \\
+                      2    & 2     & 2     & Red  \\
+                      3    & 4     & 4     & Red  \\
+                      4    & 1     & 4     & Red  \\
+                      5    & 2     & 1     & Blue \\
+                      6    & 4     & 3     & Blue \\
+                      7    & 4     & 1     & Blue \\
+                      \hline
+                  \end{tabular}
+                  \label{tab:observations}
+              \end{table}
+              \newpage
+              \lstinputlisting[style=python, caption={}]{question_3a.py}
+              \newpage
+        \item
+              from graph we can observe that point P3 and P2 are the points where support vector of class red and P5 and P6 are the points of class blue from where support vector can pass
+
+              So the support vector of Class Red can be\\
+              P2 = [2,2], P3 = [4,4]
+              \begin{align*}
+                  y_1                & = m_1x + b               \\
+                  y_1                & = \frac{4-2}{4-2}x + b   \\
+                  y_1                & = x + b          \tag{1} \\
+                  \text{also}\quad b & = y_1 -x                 \\
+                  \text{Point $P_2[2,2]$  satisfy line (1) }    \\
+                  b                  & = 2 - 2                  \\
+                                     & = 0                      \\
+                  \text{So line(1) can be written as }          \\
+                  y_1 = x
+              \end{align*}
+              Now the support vector of Class Blue can be\\
+              P5 = [2,1], P6 = [4,3]
+              \begin{align*}
+                  y_2                & = m_2x + b               \\
+                  y_2                & = \frac{3-1}{4-2}x + b   \\
+                  y_2                & = x + b          \tag{2} \\
+                  \text{also}\quad b & = y_2 -x                 \\
+                  \text{Point $P_5[2,1]$  satisfy line (2) }    \\
+                  b                  & = 1 - 2                  \\
+                                     & = -1                     \\
+                  \text{So line(1) can be written as }          \\
+                  y_2 = x - 1
+              \end{align*}
+
+              Also seperating plane can be calcuated from line equation (1) and (2).As line 1 and line 2 are parallel, equation of seperating plane is
+              \begin{align*}
+                  Y & = x + \frac{(0+(-1))}{2} \\
+                  Y & = x - 0.5 \tag{3}
+              \end{align*}
+              \textbf{Sketching seperating plane}
+              \newpage
+              \lstinputlisting[style=python, caption={}]{question_3b.py}
+
+        \item
+              Classification rules
+              \begin{enumerate}[label=\arabic*.]
+                  \item \textbf{Class Red}
+                        \[(-0.5) + X_1 - X_2 < 0\]
+                  \item \textbf{Class Blue}
+                        \[(-0.5) + X_1 - X_2 > 0\]
+              \end{enumerate}
+
+        \item
+              margin for the maximal margin hyperplane
+        \item
+              support vectors for the maximal margin classifier
+              \newline
+              \textbf{Both mention in below code}
+              \newpage
+
+              \lstinputlisting[style=python, caption={}]{question_3b.py}
+              \newpage
+        \item
+              \textbf{Argument \\}
+              In an SVM, the maximal margin hyperplane is defined by the support vectors, which are the data points closest to the hyperplane and have non-zero margin. Any data points that are not support vectors do not affect the hyperplane as long as they stay on the correct side of it.
+
+              In this case, the seventh observation is not a support vector, meaning it is not one of the closest data points to the hyperplane. If the seventh observation is moved slightly within the same class, it would still not become a support vector. This is because the margin is determined by the support vectors, and the non-support vectors have no influence on it.
+
+              Therefore, as long as the seventh observation remains correctly classified within the same class and does not become a support vector, its slight movement would not affect the maximal margin hyperplane, which is primarily defined by the support vectors and their relative positions.
+        \item 
+        line equation 
+        \[y = 0.7x + 0.5\]
+        \newpage
+        \lstinputlisting[style=python, caption={}]{question_3g.py}
+        \newpage
+        \item
+        New Point [2,3] in class Blue 
+        \lstinputlisting[style=python, caption={}]{question_3h.py}
+
+    \end{enumerate}
+\end{Solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Complete the assignment now
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
