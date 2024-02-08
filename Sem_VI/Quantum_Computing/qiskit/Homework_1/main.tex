@@ -1,0 +1,1605 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Packages
+\documentclass[10pt, a4paper]{article}
+\usepackage[top=3cm, bottom=4cm, left=3.5cm, right=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd, fancyhdr, color, comment, graphicx, environ}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{lastpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{thmtools}
+\usepackage{shadethm}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Environment setup
+\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+\newrobustcmd\ExampleText{%
+An \textit{inhomogeneous linear} differential equation has the form
+\begin{align}
+L[v ] = f,
+\end{align}
+where $L$ is a linear differential operator, $v$ is the dependent
+variable, and $f$ is a given non−zero function of the independent
+variables alone.
+}
+\mdfdefinestyle{theoremstyle}{%
+linecolor=black,linewidth=1pt,%
+frametitlerule=true,%
+frametitlebackgroundcolor=gray!20,
+innertopmargin=\topskip,
+}
+\mdtheorem[style=theoremstyle]{Problem}{Problem}
+\newenvironment{Solution}{\textbf{Solution.}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fill in the appropriate information below
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}     
+\newcommand\course{CS550 Machine Learning}                            % <-- course name   
+\newcommand\hwnumber{ 1}                                 % <-- homework number
+\newcommand\Information{Karan Sunil Kumbhar }                        % <-- personal information
+\newcommand\Informatio{Id. - 12140860}
+\newcommand\Informati{BTech CSE}
+\newcommand\Informat{2025}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page setup
+\pagestyle{fancy}
+\headheight 35pt
+\lhead{\today}
+\rhead{\includegraphics[width=1.5cm]{iitbh.png}}
+\lfoot{}
+\pagenumbering{arabic}
+\cfoot{\small\thepage}
+\rfoot{}
+\headsep 1.2em
+\renewcommand{\baselinestretch}{1.25}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Add new commands here
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\DeclareMathOperator{\Mod}{Mod} 
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{case}{Case}
+\newcommand{\assign}{:=}
+\newcommand{\infixiff}{\text{ iff }}
+\newcommand{\nobracket}{}
+\newcommand{\backassign}{=:}
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextbf}[1]{\text{{\bfseries{#1}}}}
+\newcommand{\tmtextit}[1]{\text{{\itshape{#1}}}}
+
+\newenvironment{itemizedot}{\begin{itemize} \renewcommand{\labelitemi}{$\bullet$}\renewcommand{\labelitemii}{$\bullet$}\renewcommand{\labelitemiii}{$\bullet$}\renewcommand{\labelitemiv}{$\bullet$}}{\end{itemize}}
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active \def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Begin now!
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3cm}
+            
+        \Huge
+        \textbf{Machine Learning}
+            
+        \vspace{1cm}
+        \huge
+        Homework\hwnumber
+            
+        \vspace{1.5cm}
+        \Large
+            
+        \textbf{\Information}\\                      % <-- author
+        \textbf{\Informatio}\\
+        \textbf{\Informati} \\
+        \textbf{\Informat} \\
+            
+        \vfill
+        
+         \course \ 
+            
+        \vspace{1cm}
+            
+        \includegraphics[width=0.4\textwidth]{iitbh.png}
+        \\
+        
+        \Large
+        
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Start the assignment now
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 12}\\
+Given \\
+b = 0, 8, 8, 20\\
+t = 0, 1, 3, 4 \\
+line equation
+\begin{align*}
+    C + Dt &= b \\
+\end{align*}
+So Matrix A and b are
+\begin{align*}
+A &= \begin{bmatrix}
+    1 & 0 \\
+    1 & 1 \\
+    1 & 3 \\
+    1 & 4 \\ 
+    \end{bmatrix} 
+\\
+b &= \begin{bmatrix}
+    1\\
+    1\\
+    1\\
+    1 
+    \end{bmatrix}
+\end{align*}
+Now solving  
+\begin{align}
+A^TAx &= A^Tb \\
+x &= (A^TA)^{-1} A^Tb \\
+ x &= \begin{bmatrix}
+    C\\
+    D\\
+    \end{bmatrix} 
+\nonumber
+\end{align}
+let's calculate separately
+\begin{align*}
+A^TA &= \begin{bmatrix}
+    1 & 0 \\
+    1 & 1 \\
+    1 & 3 \\
+    1 & 4 \\ 
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 1 & 1 & 1 \\
+        0 & 1 & 3 & 4
+    \end{bmatrix}\\
+   &= \begin{bmatrix}
+        1+1+1+1 & 1+3+4\\
+        1+3+4 & 1+9+16\\
+    \end{bmatrix}\\
+   &= \begin{bmatrix}
+    4 & 8 \\
+    8 & 26
+\end{bmatrix}\\
+\end{align*}
+\begin{align*}
+(A^TA)^{-1} &= 
+    \frac{1}{\mod(A^TA)}
+    cofac
+\begin{bmatrix}
+    4 & 8 \\
+    8 & 26
+\end{bmatrix}^T\\
+ &= \frac{1}{40}\begin{bmatrix}
+    26 & -8 \\
+    -8 & 4  
+ \end{bmatrix}^T\\
+ &=
+\frac{1}{40}
+\begin{bmatrix}
+    26 & -8 \\
+    -8 & 4  
+\end{bmatrix}
+\end{align*}
+\begin{align*}
+A^Tb &= \begin{bmatrix}
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+    0 \\ 
+    8 \\ 
+    8 \\ 
+    20 \\ 
+\end{bmatrix}\\
+ &= \begin{bmatrix}
+    36 \\
+    112
+\end{bmatrix}
+\end{align*}
+from equation (2)
+\begin{align}
+\nonumber
+x &= (A^TA)^{-1} A^Tb \\
+\nonumber
+ &= \frac{1}{40}
+    \begin{bmatrix}
+        26 & -8 \\
+        -8 & 4  
+    \end{bmatrix}
+    \begin{bmatrix}
+        36 \\
+        112
+    \end{bmatrix}\\
+\nonumber
+    &= \frac{1}{40}
+    \begin{bmatrix}
+         26*36 & (-8)*112 \\ 
+        36*(-8) &  4*112 \\ 
+    \end{bmatrix} \\
+\nonumber
+    &= \frac{1}{40}
+    \begin{bmatrix}
+        40 \\
+        160
+    \end{bmatrix} \\
+    &= 
+    \begin{bmatrix}
+        1 \\
+        4
+    \end{bmatrix} \\
+\nonumber
+\end{align}
+Now calculate P \\
+we know that 
+\begin{align}
+\nonumber
+    p &= Ax\\
+\nonumber
+      &=  \begin{bmatrix}
+        1 & 0 \\
+        1 & 1 \\
+        1 & 3 \\
+        1 & 4 \\ 
+        \end{bmatrix} 
+        \begin{bmatrix}
+            1 \\
+            4
+        \end{bmatrix}\\
+\nonumber
+      &= \begin{bmatrix}
+        1+0  \\
+        1+4  \\
+        1+12 \\
+        1+16
+      \end{bmatrix}\\
+      &= \begin{bmatrix}
+        1  \\
+        5  \\
+        13 \\
+        17
+      \end{bmatrix} 
+\end{align}
+So from (4) we can calculate errors as follows
+\begin{align*}
+    e &= b - p \\
+      &= \begin{bmatrix}
+            0 \\
+            8 \\
+            8 \\
+            20 \\
+      \end{bmatrix} - 
+      \begin{bmatrix}
+        1 \\
+        5 \\
+        13 \\
+        17 \\
+      \end{bmatrix}\\
+     &= \begin{bmatrix}
+        -1 \\
+         3 \\
+        -5 \\
+         3 \\
+     \end{bmatrix} \tag{5}
+\end{align*}
+from equation (5) we can calculate
+\begin{align*}
+    E &= e_1^2 + e_2^2 + e_3^2 + e_4^2 \\
+      &= (-1)^2 + (3)^2 + (-5)^2 + (3)^2\\
+      &= 1 + 9 + 25 + 9\\
+      &= 44
+\end{align*}
+\textbf{So value of minimum squared error is 44 } 
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 13}\\
+Given \\
+b = 0, 8, 8, 20 \\
+t = 0, 1, 3, 4 \\
+\\
+four equations are(unsolvable)\\
+\begin{align*}
+    Ax &= b\\
+    \begin{bmatrix}
+        1 & 0 \\
+        1 & 1 \\
+        1 & 3 \\
+        1 & 4 \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        C\\
+        D
+    \end{bmatrix}
+     &= \begin{bmatrix}
+        0\\
+        8\\
+        8\\
+        20\\
+     \end{bmatrix}\\
+\end{align*}
+\begin{align*}
+C &= 0 \tag{1}\\
+C + D &= 8 \tag{2}\\  
+C + 3D &= 8 \tag{3}\\
+C + 4D &= 20 \tag{4} 
+\end{align*}
+Now we have p = 1, 5, 13, 17 \\
+let's find value of x
+\begin{align*}
+    Ax &= p \\
+    A^TAx &= A^Tp\\
+    x &= (A^TA)^{-1}A^Tp 
+\end{align*}
+\\
+from Question 12 we know value of $(A^TA)^{-1}$
+\begin{align*}
+    x &= \frac{1}{40}
+    \begin{bmatrix}
+       26 & -8 \\ 
+       -8 & 4
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 1 & 1 & 1  \\
+        0 & 1 & 3 & 4 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\ 5 \\ 13 \\ 17 \\
+    \end{bmatrix}\\
+      &= \frac{1}{40}
+    \begin{bmatrix}
+        26 & 26-8 & 26-24 & 26-32 \\
+        -8 & -8+4 & -8+12 & -8+16  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        5 \\
+        13 \\
+        17 \\
+    \end{bmatrix}\\
+    &= \frac{1}{40}
+    \begin{bmatrix}
+        26 & 18 & 2 & -6 \\
+        -8 & -4 & 4 & 8  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        5 \\
+        13 \\
+        17 \\
+    \end{bmatrix}\\
+    &= \frac{1}{40}
+    \begin{bmatrix}
+        26 + 90 + 26 - 102 \\
+        -8 - 20 + 52 + 136 
+    \end{bmatrix}\\
+    &= \frac{1}{40}
+    \begin{bmatrix}
+         40 \\ 
+         160 \\
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+        1 \\
+        4
+    \end{bmatrix}
+\end{align*}
+
+\textbf{So the value of x is (1,4) which is same as previous question as we are putting same p from previous question}
+
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 14}\\
+Given\\
+e = b - p = -1, 3, -5, 3\\
+\\To verify $e$ is perpendicular to the Columns of matrix $A$
+\begin{align*}
+   e.C_i^T  &= 0  \\
+\end{align*}
+for first Column
+\begin{align*}
+    &= e.C_1^T    \\
+    &= 
+    \begin{bmatrix}
+        -1 \\
+        3 \\
+        -5 \\
+        3 \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        1  & 1 & 1 & 1  \\
+    \end{bmatrix}  
+    \\
+     &= -1 + 3 - 5 +3  \\
+     &= 0\\
+\end{align*}
+for second Column
+\begin{align*}
+    &= e.C_2^T    \\
+    &= 
+    \begin{bmatrix}
+        -1 \\
+        3 \\
+        -5 \\
+        3 \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        0  & 1 & 3 & 4  \\
+    \end{bmatrix}  
+    \\
+     &= 0 + 3 - 15 + 12  \\
+     &= 0\\
+\end{align*}
+\textbf{So both e is perpendicular to both the columns of A}
+\\
+
+To get shortest distance we take perpendicular distance 
+but from above result we can see that e is already perpendicular to column space of A.So from Questions 12 value of \(\|e\|^2\)  is 44\\
+\textbf{Value of shortest distance  \(\|e\|\) is $\sqrt{44}$}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 15}\\
+Given 
+\begin{align*}
+    E  &= \|Ax - b\|^2
+\end{align*}
+let first find Ax - b 
+\begin{align*}
+    Ax -b  &= 
+    \begin{bmatrix}
+        1 & 0 \\
+        1 & 1 \\
+        1 & 3 \\
+        1 & 4 \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        C \\
+        D \\
+    \end{bmatrix} -
+    \begin{bmatrix}
+       0 \\ 
+       8 \\ 
+       8 \\ 
+       20 \\ 
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+        C - 0 \\
+        C + D - 8 \\
+        C + 3D - 8 \\
+        C + 4D - 20 \\
+    \end{bmatrix}\tag{1} 
+\end{align*}
+\\
+from equation (1) we can write  
+\begin{align*}
+    E &= \|Ax - b\|^2 \\
+      &= (C)^2 + (C+D-8)^2 + (C+3D-8)^2 + (C+4D-20)^2\tag{2}
+\end{align*}
+Partial derivation of equation (2) with respect to C 
+\begin{align*}
+    \frac{\partial E}{\partial C} &= 
+    2C + 2(C+D-8) + 2(C+3D-8) + 2(C+4D-20) 
+    &= 0\\
+    \frac{1}{2}\frac{\partial E}{\partial C} &= 
+    C + (C+D-8) + (C+3D-8) + (C+4D-20)
+    &= 0  \\
+    &=> 4C + 8D - 36 =0 \tag{3} \\
+\end{align*}
+Partial derivation of equation (2) with respect to D 
+\begin{align*}
+    \frac{\partial E}{\partial D} &= 
+    0 + 2(C+D-8) + 6(C+3D-8) + 8(C+4D-20)
+    &= 0 \\
+    \frac{1}{2}\frac{\partial E}{\partial D} &= 
+    0 + (C+D-8) + 3(C+3D-8) + 4(C+4D-20)
+    &= 0 \\
+    &=> 8C + 26D - 112 =0 \tag{4} \\
+\end{align*}
+\\
+Now we can get equation(3) and equation(4)  from 
+\begin{align*}
+    A^TAx&= A^Tb \\
+    A^TAx - A^Tb&= 0 \\
+\end{align*}
+from Questions 12 we can take values of $A^TA$ and $A^Tb$
+\begin{align*}
+    \begin{bmatrix}
+        4 & 8 \\
+        8 & 26 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        C\\
+        D\\ 
+    \end{bmatrix} -  
+    \begin{bmatrix}
+         36  \\
+         112 \\
+    \end{bmatrix}
+    &= \begin{bmatrix}
+        0 \\
+        0 \\
+    \end{bmatrix} \\
+    \begin{bmatrix}
+    4C + 8D - 36 \\
+    8C + 26D - 112  \\
+    \end{bmatrix}
+    &= \begin{bmatrix}
+        0  \\
+        0  \\
+    \end{bmatrix}\tag{5}
+\end{align*}
+\textbf{Clearly we can obtain matrix (5) from equation (3) and equation(4)}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 16}
+\\Given\\
+b = 0, 8, 8, 20\\
+equations are
+\begin{align*}
+    C &= 0 \tag{1}  \\
+    C &= 8 \tag{2}  \\
+    C &= 8 \tag{3}  \\
+    C &= 20 \tag{4} \\
+\end{align*}
+\\
+from above equation matrix A are(Co-efficient of D is 0 and Co-efficient of C is 1)
+\begin{align*}
+    A &= \begin{bmatrix}
+        1 \\ 
+        1 \\ 
+        1 \\ 
+        1 \\ 
+    \end{bmatrix}  \\
+\end{align*}
+Solving the equation 
+\begin{align*}
+    A^TAx &= A^Tb\\
+\end{align*}
+let's calculate
+\begin{align*}
+    A^TA &= 
+    \begin{bmatrix}
+        1 & 1 & 1 & 1\\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+    \end{bmatrix}\\
+    &= [4] \tag{5}
+\end{align*}
+\begin{align*}
+    A^Tb &= 
+    \begin{bmatrix}
+        1 & 1 & 1 & 1\\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        0  \\
+        8  \\
+        8  \\
+        20 \\
+    \end{bmatrix}\\
+    &= [36] \tag{6}
+\end{align*}
+from equation(5) and equation(6) 
+\begin{align*}
+    A^TAx &= A^Tb  \\
+    [4] x &= [36]  \\
+        x &= [9] \tag{7}
+\end{align*}
+from equation(7) value of p is
+\begin{align*}
+    p &= Ax  \\
+      &= \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+      \end{bmatrix} [9]  \quad
+      = \begin{bmatrix}
+        9  \\
+        9  \\
+        9  \\
+        9  \\
+      \end{bmatrix}
+\end{align*}
+Calculating errors  
+\begin{align*}
+    e &= b -p\\
+      &= \begin{bmatrix}
+        0 \\
+        8 \\
+        8 \\
+        20 \\
+      \end{bmatrix} - 
+      \begin{bmatrix}
+        9 \\
+        9 \\
+        9 \\
+        9 \\
+      \end{bmatrix} \quad
+      = \begin{bmatrix}
+         -9  \\
+         -1  \\
+         -1  \\
+         11  \\
+      \end{bmatrix}
+\end{align*}
+\textbf{So four errors are (-9, -1, -1, 11) and the line is $C = 9$}
+
+%%%%%%%%%% Graph Section %%%%%%%%%%%%%%%%%%
+\newpage
+
+\textbf{Graph Representation}\\
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={$t$},
+        ylabel={$b$},
+        xmin=0, xmax=4.5,
+        ymin=0, ymax=25,
+        axis lines=middle,
+        axis line style={-latex},
+        xtick={0.01,1,3,4},
+        xticklabels={$t_1=0$, $t_2=1$, $t_3=3$, $t_4=4$},
+        ytick={0.01,8,20},
+        yticklabels={$b_1=0$, $b_2=b_3=8$, $b_4=20$},
+        width=15cm,
+        height=16cm,
+        clip=false,
+    ]
+    
+    % Points b1, b2, b3, b4
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:0,0) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:1,8) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:3,8) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:4,20) {};
+    
+    \draw[dashed] (axis cs:0,9) -- (axis cs:0,0) node[midway, above right, black] {e1=(-9)};
+    \draw[dashed] (axis cs:1,9) -- (axis cs:1,8) node[midway, below right, black] {e2=(-1)};
+    \draw[dashed] (axis cs:3,9) -- (axis cs:3,8) node[midway, below right, black] {e3=(-1)};
+    \draw[dashed] (axis cs:4,9) -- (axis cs:4,20) node[midway, above right, black] {e4=11};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:1,9) {};
+    \node[above right] at (axis cs:1,9) {$p_2$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:0,9) {};
+    \node[above right] at (axis cs:0,9) {$p_1$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:3,9) {};
+    \node[above left] at (axis cs:3,9) {$p_3$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:4,9) {};
+    \node[below right] at (axis cs:4,9) {$p_4$};
+    
+    % Line b = (56/13)t
+    \addplot[color=red,mark=none,domain=0:4.5] {9} node[midway, above, sloped, black] {$b=\frac{56}{13}t$};
+    
+    \end{axis}
+\end{tikzpicture}
+%%%%%%%%%% Graph Section %%%%%%%%%%%%%%%%%%
+
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 17}\\
+Given \\
+vector b = (0, 8, 8, 20) \\
+vector a = (1, 1, 1, 1) \\
+To Find
+\begin{align*}
+    \hat{x} &= \frac{a^Tb}{a^Ta}  \\
+    p &= \hat{x}a \tag{projection vector} \\
+\end{align*}
+let's calculate
+\begin{align*}
+    a^Tb &= \begin{bmatrix}
+        1 & 1 & 1 & 1   \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        0 \\
+        8 \\
+        8 \\
+        20 \\
+    \end{bmatrix} \quad
+    = [36] \tag{1}
+\end{align*}
+\begin{align*}
+    a^Ta &= \begin{bmatrix}
+        1 & 1 & 1 & 1   \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+    \end{bmatrix} \quad
+    = [4] \tag{2}
+\end{align*}
+from equation(1) and equation(2)
+\begin{align*}
+    \hat{x} &= \frac{[36]}{[4]} \\
+            &= 9 \tag{3} \\
+\end{align*}
+from equation (3)
+\begin{align*}
+    p &= \hat{x}a \\
+      &= 9 \begin{bmatrix}
+        1 \\
+        1 \\
+        1 \\
+        1 \\
+      \end{bmatrix} \quad
+      = \begin{bmatrix}
+        9  \\
+        9  \\
+        9  \\
+        9  \\
+      \end{bmatrix} \tag{4}
+\end{align*}
+error vector $e$ is as follows
+\begin{align*}
+    e &= b - p \\ 
+      &= \begin{bmatrix}
+        0  \\
+        8  \\
+        8  \\
+        20  \\
+      \end{bmatrix} - 
+      \begin{bmatrix}
+        9  \\
+        9  \\
+        9  \\
+        9  \\
+      \end{bmatrix} \quad
+      = \begin{bmatrix}
+        -9 \\
+        -1 \\
+        -1 \\
+        11 \\
+      \end{bmatrix}
+\end{align*}
+let's check weather vector $e$ is perpendicular to vector $a$
+\begin{align*}
+    &= e.a\\
+    &= (-9) + (-1) + (-1) + 11\\
+    &= 0
+\end{align*}
+\textbf{Clearly vector $e$ is perpendicular to vector $a$}\\
+let's calculate shortest distance, which is $\|e\|$
+\begin{align*}
+    \|e\|^2 &= (-9)^2 + (-1)^2 + (-1)^2 + 11^2\\
+          &= 81 + 1 + 1 + 121 \\
+          &= 81 + 1 + 1 + 121 \\ 
+          &= 204 \\
+    \|e\| &= \sqrt{204} \\
+\end{align*}
+\textbf{So the value of $\|e\|$ is $\sqrt{204}$}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 18}\\
+Given\\
+line equation :-
+\begin{align*}
+    b &= Dt 
+\end{align*}
+given other line equations are
+\begin{align*}
+    D.0 &= 0 \tag{1} \\
+    D.1 &= 8 \tag{2} \\
+    D.3 &= 8 \tag{3} \\
+    D.4 &= 20 \tag{4} 
+\end{align*}
+so the t and b vectors are \\
+t = (0, 1, 3, 4) \\
+b = (0, 8, 8, 20) \\
+
+Now matrix A is (as co-effecient of C are zeros)
+\begin{align*}
+    A &= \begin{bmatrix}
+        0 \\
+        1 \\
+        3 \\
+        4 
+    \end{bmatrix} 
+\end{align*}
+To find
+\begin{align*}
+    A^TA\hat{x} &=  A^Tb \\
+    \hat{x}     &=  (A^TA)^{-1}A^Tb 
+\end{align*}
+let's calculate\\
+\begin{align*}
+    A^TA &= \begin{bmatrix}
+        0 & 1 & 3 & 4 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 \\
+        1 \\
+        3 \\
+        4 \\
+    \end{bmatrix} \quad 
+    = [26] \tag{5}
+\end{align*}
+\begin{align*}
+    A^Tb &= \begin{bmatrix}
+        0 & 1 & 3 & 4 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 \\
+        8 \\
+        8 \\
+        20 \\
+    \end{bmatrix} \quad 
+    = [112] \tag{6}
+\end{align*}
+from equation(5) and (6) 
+\begin{align*}
+    \hat{x} &= (A^TA)^{-1}A^Tb\\
+            &= \frac{1}{26} \times [112]\quad
+            = \frac{56}{13} \tag{7}
+\end{align*}
+\textbf{So the required line equation is }
+\begin{align*}
+    Dt &= b\\
+    \left(\frac{56}{13}\right) t &= b
+\end{align*}
+
+%%%%%%%%%%%%%%% Graph Representation %%%%%%%%%%%%%%%%%%%%
+\newpage
+\textbf{Graphical Representation}\\
+\\
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={$t$},
+        ylabel={$b$},
+        xmin=0, xmax=4.5,
+        ymin=0, ymax=25,
+        axis lines=middle,
+        axis line style={-latex},
+        xtick={0.01,1,3,4},
+        xticklabels={$t_1=0$, $t_2=1$, $t_3=3$, $t_4=4$},
+        ytick={0.01,8,20},
+        yticklabels={$b_1=0$, $b_2=b_3=8$, $b_4=20$},
+        width=15cm,
+        height=16cm,
+        clip=false,
+    ]
+    
+    % Points b1, b2, b3, b4
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:0,0) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:1,8) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:3,8) {};
+    \node[circle,fill,inner sep=1.5pt] at (axis cs:4,20) {};
+    
+    \draw[dashed] (axis cs:0,0) -- (axis cs:0,0) node[midway, above right, black] {e1};
+    \draw[dashed] (axis cs:1,56/13) -- (axis cs:1,8) node[midway, above right, black] {e2};
+    \draw[dashed] (axis cs:3,168/13) -- (axis cs:3,8) node[midway, above right, black] {e3};
+    \draw[dashed] (axis cs:4,224/13) -- (axis cs:4,20) node[midway, above right, black] {e4};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:1,56/13) {};
+    \node[below right] at (axis cs:1,56/13) {$p_2$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:0,0) {};
+    \node[above right] at (axis cs:0,0) {$p_1$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:3,168/13) {};
+    \node[above left] at (axis cs:3,168/13) {$p_3$};
+    
+    \node[red,fill=black,circle,inner sep=1.5pt] at (axis cs:4,224/13) {};
+    \node[below right] at (axis cs:4,224/13) {$p_4$};
+    
+    % Line b = (56/13)t
+    \addplot[color=red,mark=none,domain=0:4.5] {(56/13)*x} node[midway, above, sloped, black] {$b=\frac{56}{13}t$};
+    
+    \end{axis}
+\end{tikzpicture}
+%%%%%%%%%%%%%%% Graph Representation %%%%%%%%%%%%%%%%%%%%
+
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 19}\\
+Given vectors \\
+b = (0, 8, 8, 20) \\
+a = (0, 1, 3, 4) \\ 
+
+To find projection of b along a :-
+\begin{align*}
+    a.b &= |a||b|cos\theta \tag{dot product} \\
+    cos\theta &= \frac{a.b}{|a||b|} \tag{1}\\
+\end{align*}
+component of b along a
+\begin{align*}
+    &=(|b|cos\theta)\hat{a} \\
+    &= |b| \left(\frac{a.b}{|a||b|} \right)\left(\frac{a}{|a|}\right) \\
+    &= \frac{a.b}{|a||a|} a \tag{2}
+\end{align*}
+we can also write equation(2) as 
+\begin{align*}
+    &= \left(\frac{a^Tb}{a^Ta}\right)a \tag{3}\\
+\end{align*}
+from above equations 
+\begin{align*}
+    p &= \hat{x}a \\
+    \therefore \hat{x} &= \frac{a^Tb}{a^Ta} \\
+\end{align*}
+let's calculate $\hat{x}$ (taking values of $a^Tb$ and $a^Ta$ from question 18 [equation(5) and (6)] )
+\begin{align*}
+    \hat{x} &= \frac{a^Tb}{a^Ta} \quad
+        = \frac{112}{26} \quad
+        = \frac{56}{13}
+\end{align*}
+Calculating p
+\begin{align*}
+    p &= \hat{x} a  \\
+      &= \frac{56}{13} 
+      \begin{bmatrix}
+        0 \\
+        1 \\
+        3 \\
+        4 \\
+      \end{bmatrix}  \\
+\end{align*}
+from Problem 16 and Problem 18
+
+(C,D) = (9,56/13)\\
+from Problem 11-14
+
+(C,D) = (1,4)\\
+\\
+
+\textbf{These are not same because vector $(1,1,1,1)$ and $(0,1,3,4)$ are not\newline perpendicular }
+
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Problem 20}\\
+Given\\
+equation of Parabola
+\begin{align*}
+    b &= C + Dt + Et^2 
+\end{align*}
+vectors are\\
+b = (0, 8, 8, 20)\\
+t = (0, 1, 3, 4)\\
+So out unsolvable equation will be
+\begin{align*}
+    Ax &= b  \\
+    \begin{bmatrix}
+        1 & 0 & 0  \\
+        1 & 1 & 1  \\
+        1 & 3 & 9  \\
+        1 & 4 & 16 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        C \\
+        D \\
+        E \\
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        0\\
+        8\\
+        8\\
+        20\\
+    \end{bmatrix}
+\end{align*}
+Now solve for equation
+\begin{align*}
+    A^TAx &= A^Tb 
+\end{align*}
+Calculating both separately
+\begin{align*}
+    A^TA &= \begin{bmatrix}
+        1 & 1 & 1 & 1  \\
+        0 & 1 & 3 & 4  \\
+        0 & 1 & 9 & 16  \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        1 & 0 & 0  \\
+        1 & 1 & 1  \\
+        1 & 3 & 9  \\
+        1 & 4 & 16 \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        1+1+1+1 & 0+1+3+4 & 0+1+9+16 \\
+        0+1+3+4 & 0+1+9+16 & 0+1+27+64 \\
+        0+1+9+16 & 0+1+27+64 & 0+1+81+256 \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        4 & 8 & 26  \\
+        8 & 26 & 92  \\
+        26 & 92 & 338  \\
+    \end{bmatrix} \\
+    A^Tb &= \begin{bmatrix}
+        1 & 1 & 1 & 1  \\
+        0 & 1 & 3 & 4  \\
+        0 & 1 & 9 & 16  \\
+    \end{bmatrix} 
+    \begin{bmatrix}
+        0  \\
+        8  \\
+        8  \\
+        20  \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        0+8+8+20 \\
+        0+8+32+80  \\ 
+        0+8+72+320 \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        36\\
+        112\\
+        400\\
+    \end{bmatrix}
+\end{align*}
+\textbf{So our Normal equation will be}
+\begin{align*}
+    A^TAx &= A^Tb \\
+    \begin{bmatrix}
+        4 & 8 & 26  \\
+        8 & 26 & 92  \\
+        26 & 92 & 338  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        C \\
+        D \\
+        E \\
+    \end{bmatrix} &=
+    \begin{bmatrix}
+        36\\
+        112\\
+        400\\
+    \end{bmatrix} \\
+\end{align*}
+\textbf{Figure II.3b will not change as it's just projection in 4 dimension vector $[R^4]$ same as given figure }
+ 
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 21}\\
+Given\\
+Cubic equation
+\begin{align*}
+    b &= C + Dt + Et^2 + Ft^3
+\end{align*}
+Writing in form of $Ax = b$
+\begin{align*}
+    \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        1 & 1 & 1 & 1 \\
+        1 & 3 & 9 & 27 \\
+        1 & 4 & 16 & 64 
+    \end{bmatrix}
+    \begin{bmatrix}
+        C\\
+        D\\
+        E\\
+        F\\
+    \end{bmatrix}
+    &= \begin{bmatrix}
+        0\\
+        8\\
+        8\\
+        20
+    \end{bmatrix}
+\end{align*}
+We have system of linear equation as follows 
+\begin{align*}
+    C &= 0 \tag{1} \\
+    C + D + E +F &= 8 \tag{2} \\
+    C + 3D + 9E +27E &= 8 \tag{3} \\
+    C + 4D + 16E + 64 F&= 20 \tag{4} 
+\end{align*}
+\textbf{solving system of linear equations by elimination method}
+
+Step 1: Subtract the first row from the second, third, and fourth rows:
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 3 & 9 & 27 \\
+    0 & 4 & 16 & 64 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    8\\
+    20\\
+\end{bmatrix}
+\]
+
+Step 2: Subtract 3 times the second row from the third row and 4 times the second row from the fourth row:
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 6 & 24 \\
+    0 & 0 & 12 & 60 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    -16\\
+    -12\\
+\end{bmatrix}
+\]
+
+Step 3: Divide the third row by 6:
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 4 \\
+    0 & 0 & 12 & 60 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    \frac{-16}{6}\\
+    -12\\
+\end{bmatrix}
+\]
+
+Step 4: Devide by 12 to the fourth row:
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 4 \\
+    0 & 0 & 1 & 5 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    \frac{-8}{3}\\
+    -1\\
+\end{bmatrix}
+\]
+
+Step 5: Subtract third row from fourth row 
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 4 \\
+    0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    \frac{-8}{3}\\
+    \frac{5}{3}\\
+\end{bmatrix}
+\]
+
+Step 6: Subtract the four times of fourth row from the third row :
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    8\\
+    \frac{-28}{3}\\
+    \frac{5}{3}\\
+\end{bmatrix}
+\]
+
+Step 7: Subtract the fourth row from the second row and Subtract the third row from second row :
+\[
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+    C\\
+    D\\
+    E\\
+    F\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0\\
+    \frac{47}{3}\\
+    \frac{-8}{3}\\
+    \frac{5}{3}\\
+\end{bmatrix}
+\quad
+= \frac{1}{3}
+\begin{bmatrix}
+0 \\
+47 \\
+-28 \\
+5 \\
+\end{bmatrix}
+\]
+\textbf{Solution is}
+\begin{align*}
+    \begin{bmatrix}
+        C\\
+        D\\
+        E\\
+        F\\
+    \end{bmatrix} &= 
+    \frac{1}{3}
+    \begin{bmatrix}
+        0\\
+        47\\
+        -28\\
+        5\\
+    \end{bmatrix} \\
+\end{align*}
+
+\textbf{As we are getting solution to the given equations that means all 
+points lies on the Cubic part, so error(e) is zero and p in nothing but b}\\
+
+\textbf{e =(0,0,0,0), p=(0,8,8,20)} 
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%New problem
+\newpage
+\begin{Problem}
+\end{Problem}
+
+\begin{Solution}\\
+\textbf{Question 22}\\
+Given\\ 
+\textbf{Part a]}
+\begin{align*}
+\bar{t} &= 2 \\
+\bar{b} &= 9  
+\end{align*}
+To verify
+\begin{align*}
+   C + D\bar{t} &= \bar{b} \tag{1}
+\end{align*}
+from Question 12 we can take 
+\begin{align*}
+    \begin{bmatrix}
+        C\\
+        D
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        1\\
+        4
+    \end{bmatrix}
+\end{align*}
+\begin{align*}
+    1 + 4\times\bar{t} &= \bar{b}\\
+    1 + 4\times(2) &= (9)\\
+    1 + 8 &= 9\\
+    9 &= 9 \tag{verified}
+\end{align*}
+\textbf{Explanation}\\
+we know that for best line 
+\begin{align*}
+    \sum e_i =0 
+\end{align*}
+also 
+\begin{align*}
+   e_i &= b_i - p_i \\
+   p_i &= b_i - e_i 
+   \sum p_i &= \sum b_i - \sum e_i`
+   \sum p_i &= \sum b_i
+\end{align*}
+best line equation is 
+\begin{align*}
+    \begin{bmatrix}
+        1 & t_1\\
+        1 & t_2\\
+        1 & t_3\\
+        1 & t_4
+    \end{bmatrix}
+    \begin{bmatrix}
+        C\\
+        D
+    \end{bmatrix}
+    &= 
+    \begin{bmatrix}
+        p_1\\
+        p_2\\
+        p_3\\
+        p_4
+    \end{bmatrix}
+\end{align*}
+by adding all equations we get
+\begin{align*}
+    4C + D\sum t)i &= \sum p_i  \\
+    4C + D\sum t)i &= \sum b_i  \\
+    C + D\frac{\sum t_i}{4} &= \frac{\sum b_i}{4}  \\
+    C + D\bar{t} = \bar{b}
+\end{align*}
+\textbf{So we can conclude that point $(\bar{t},\bar{b})$ lie on best fit line}
+\\
+\\
+\textbf{Part b]}\\
+Given equation 
+\begin{align*}
+A^TA\hat{x} = A^Tb\\
+\end{align*}
+where 
+\begin{align*}
+    A &= 
+    \begin{bmatrix}
+        1 & t_1 \\      
+        1 & t_2 \\      
+        1 & t_3 \\      
+        1 & t_4 \\      
+    \end{bmatrix}\\
+    A^TA &= 
+    \begin{bmatrix}
+        1 & 1 & 1 & 1 \\
+        t_1 & t_2 & t_3 &  t_4 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & t_1 \\      
+        1 & t_2 \\      
+        1 & t_3 \\      
+        1 & t_4 \\
+    \end{bmatrix}\quad  
+    \begin{bmatrix}
+        1 + 1 + 1 + 1 &  t_1+t_2+t_3+t_4 \\
+        t_1+t_2+t_3+t_4 & t_1^{2}+t_2^{2}+t_3^{2}+t_4^{2}
+    \end{bmatrix}\\
+    &= 
+    \begin{bmatrix}
+        m  & \sum t_i \\
+        \sum t_i & \sum t_i^2
+    \end{bmatrix}\\
+    A^Tb &= 
+    \begin{bmatrix}
+        1 & 1 & 1 & 1 \\
+        t_1 & t_2 & t_3 &  t_4 
+    \end{bmatrix}
+    \begin{bmatrix}
+        b_1 \\
+        b_2 \\
+        b_3 \\
+        b_4 \\
+    \end{bmatrix}\quad
+    = \begin{bmatrix}
+        b_1 + b_2 + b_3 + b_4 \\
+        b_1t_1 + b_2t_2 + b_3t_3 + b_4
+    \end{bmatrix}\\
+   &= \begin{bmatrix}
+       \sum b_i \\
+       \sum b_it_i
+   \end{bmatrix} 
+\end{align*}
+Combining all we get ==>
+\begin{align*}
+    A^TA\hat{x} = A^Tb\\
+    \begin{bmatrix}
+        m  & \sum t_i \\
+        \sum t_i & \sum t_i^2
+    \end{bmatrix}
+    \begin{bmatrix}
+        C\\
+        D
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+       \sum b_i \\
+       \sum b_it_i
+   \end{bmatrix} 
+\end{align*}
+\textbf{First equation is }
+\begin{align*}
+    mC + D\sum t_i &= \sum b_i\\
+    C + D \frac{\sum t_i}{m} &= \frac{\sum b_i}{m}\\
+    C + D \bar{t} &= \bar {b} 
+\end{align*}
+\end{Solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Complete the assignment now
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
