@@ -7,8 +7,14 @@ fn main() {
     //          --> fn main() --> statement, not experssion as not return anything
     //          --> let k = factorial(n,k); --> experssion
     //
+    
+    let z:i32; /* i32 */
+    println!("{}",z);
+    // let y1 = (z=8);
+    // println!("{}",y1);
+
     //let y = (let x=5);
-    // experssion --> return value
+    //experssion --> return value
     
     // let a = 7;
     // if(a=3){

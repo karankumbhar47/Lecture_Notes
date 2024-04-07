@@ -13,12 +13,18 @@ fn print(s:&mut String){
 }
 
 fn main() {
-    // let mut a = 8;
-    // let p = &mut a; // reference
-    // let q = 9;
+    let mut a = 8;
+    let mut p = &mut a; // reference
+    println!("{}",p);
+    //println!("{}",a);
+    let q = 9;
+    // to change p make p mutable
     // *p = q; // deference
+    let mut refq = &mut q;
+    println!("{}",q);
     // println!("{}",p);
-    //
+    println!("{}",refq);
+
     // let mut s1 = String::from("hello");
     // let r1 = &mut s1; // avoid dangling reference (what consist in s1 will be ensure)
     // print(r1);
@@ -33,12 +39,12 @@ fn main() {
     //
     // dangling reference not used then allowed
     //
-    let mut s1 = String::from("hello");
-    let r1 = &mut s1;  // one mutable reference
-    let r2 = & s1;  // not allowed if one of is already mutable reference
-    //print(r1);
-    //s1.push_str(" world");
-    println!("r1 --> {}",r1);// r1 is immutable and s1 is mutable
+    //let mut s1 = String::from("hello");
+    //let r1 = &mut s1;  // one mutable reference
+    //let r2 = & s1;  // not allowed if one of is already mutable reference
+    ////print(r1);
+    ////s1.push_str(" world");
+    //println!("r1 --> {}",r1);// r1 is immutable and s1 is mutable
     //println!("s1 --> {}",r2);
     
     //let mut r1 => r1 can point to another reference
