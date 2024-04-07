@@ -7,6 +7,7 @@
  
  overloading --> same name different object 
 */
+
 fn print(s:&mut String){
     //println!("s --> {}",s);
     s.push_str(" world");
@@ -20,17 +21,22 @@ fn main() {
     let q = 9;
     // to change p make p mutable
     // *p = q; // deference
-    let mut refq = &mut q;
-    println!("{}",q);
-    // println!("{}",p);
-    println!("{}",refq);
+    let mut refq = & q;
+    println!("q = {}",q);
+    println!("p = {}",p);
+    println!("refq = {}",refq);
 
-    // let mut s1 = String::from("hello");
-    // let r1 = &mut s1; // avoid dangling reference (what consist in s1 will be ensure)
+    let mut s1 = String::from("hello");
+    //let r1 = &mut s1; // avoid dangling reference (what consist in s1 will be ensure)
+    let r1 = &mut s1; // avoid dangling reference (what consist in s1 will be ensure)
+    // let r2 = &s1; // avoid dangling reference (what consist in s1 will be ensure)
     // print(r1);
-    // s1.push_str(" world");
-    // //println!("r1 --> {}",r1);// r1 is immutable and s1 is mutable
-    // println!("s1 --> {}",s1);
+    
+    *r1 = String::from("!!!");
+    println!("r1 --> {}",r1);// r1 is immutable and s1 is mutable
+    s1 = String::from(" heap");
+    // println!("r2 --> {}",r2);// r1 is immutable and s1 is mutable
+    println!("s1 --> {}",s1);
     // //r1 consist address, but nobody wants to see address so instead of using *r1 in rust we
     //generally use r1, but r1 consist address when no way to know the address in rust 
     //in lua r1 is similar to *r1

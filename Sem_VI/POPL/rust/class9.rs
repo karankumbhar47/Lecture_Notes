@@ -5,6 +5,7 @@
 
 // switch case(compact way to implement if else)
 
+
 // in c language
 // break is extra than if else
 // data structure (stored in table with int data type)

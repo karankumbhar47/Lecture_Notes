@@ -2,10 +2,12 @@
 // Array    --> not basic data type
 //          --> 
 
+
 // static allocation (give array size) --> element one after other
 //                                     --> consecutive give advantage to calculate address
 //                                     --> c program
 //                                         Mult(int n, int mat[n][n]){}
+//
 //                                         # call by reference 
 //                                     --> int main(){
 //                                             int a;
@@ -23,11 +25,9 @@
 // Dynamic allocation                  --> Dimention  
 //
 // malloc not contigious allocation
-//
-// 
 
 
 
 fn main() {
-
+    let s:String = String::from("./main.rs")
 }

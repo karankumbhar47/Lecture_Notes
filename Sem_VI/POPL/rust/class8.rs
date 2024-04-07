@@ -1,5 +1,7 @@
 //impirative programming lang  <==> sequencing, assignment operator
 //
+//
+
 //Sequencing 
 //      --> sequence of instruction
 //      --> top instruction need not execute first

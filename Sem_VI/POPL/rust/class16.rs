@@ -18,7 +18,7 @@ fn main(){
     println!("align of first element : {}\n",mem::align_of_val(&j.0));
 
     println!("size of second element : {}",mem::size_of_val(&j.1));
-    println!("align of second element : {}\n",mem::align_of_val(&j.0));
+    println!("align of second element : {}\n",mem::align_of_val(&j.1));
 
 
     // get this error by type equivalance , compatability
@@ -71,7 +71,7 @@ fn main(){
     //println!("value of ref point x = {}",ref_X);
     
     // initialize only one var
-    let onlyX = Point3d{x:6};
+    let mut onlyX = Point3d{x:6,y:8,z:8,a:true};
     onlyX.a = false;
     onlyX.y = 0;
     onlyX.z = 5;
