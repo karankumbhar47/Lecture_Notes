@@ -24,4 +24,5 @@ rev :: [Int] -> [Int]
 rev [] = [] 
 rev (x:xs) = (rev xs) ++ [x]
 
--- memorisation will be implemented already
+-- memorization will be implemented already
+
