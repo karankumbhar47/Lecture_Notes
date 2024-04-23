@@ -2,6 +2,7 @@ Abdul_Bari(course)/*
 playlist/
 *.zip
 sem V/Machine Learning CS550/handson-ml3/*
+Sem_VI/Quantum_Computing/qiskit/qenv/
 */output/*
 *.tar
 */qenv/*
