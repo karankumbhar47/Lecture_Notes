@@ -9,15 +9,15 @@ fn main() {
     //
     
     let z:i32; /* i32 */
-    println!("{}",z);
+    // println!("{}",z);
     // let y1 = (z=8);
     // println!("{}",y1);
 
-    //let y = (let x=5);
+    // let y = (let x=5);
     //experssion --> return value
     
-    // let a = 7;
-    // if(a=3){
+    let a = 7;
+    // if a=3{
     //     println!("{}", a);
     // }
     // else{

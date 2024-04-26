@@ -7,10 +7,10 @@ sqr x = x*x
 
 
 squareAll :: [Int] -> [Int]
--- squareAll [] = []
--- squareAll (x:y) = sqr(x) : (squareAll y)
+squareAll [] = []
+squareAll (x:y) = sqr(x) : (squareAll y)
 -- squareAll x = map sqr x
-squareAll = map sqr
+-- squareAll = map sqr
 
 --  (first element : second element)
 --  first element is may be int or list also 

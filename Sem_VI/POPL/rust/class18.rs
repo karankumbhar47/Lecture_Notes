@@ -15,7 +15,7 @@ fn main(){
     let new_arr:[usize;3] = [1,2,3];
 
     // expr --> not for compiler(but even const expr)
-    //let j:usize = new_arr[2]+5;
+    let j:usize = new_arr[2]+5;
     //println!("value of j {}",j);
 
     //let m = new_arr[j];
@@ -24,7 +24,7 @@ fn main(){
     // best type to work --> type inference
 
     // java and python --> interpreter
-    // stoppin from illigal operation
+    // stopping from illigal operation
     
     // not for c 
     // rust is in between
@@ -46,7 +46,7 @@ fn main(){
     // not similar to array
     // but you can use slice as array
     let mut slice = &my_str[1..2];
-    slice[2] ='4';
+    // slice[2] ='4';
     //let slice = &str[0..]; --> upto last
     // let slice = &str[..2]; --> from first
     println!("slice {}",slice);

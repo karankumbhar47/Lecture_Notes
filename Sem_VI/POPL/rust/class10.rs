@@ -74,4 +74,12 @@ fn main() {
     for element in (1..10).rev(){
         println!("{}",element);
     }        
+
+    for i in a {
+        println!("{}",i);
+    }
+
+    for i in 1..a.len(){
+        println!("{}",a[i]);
+    }
 }

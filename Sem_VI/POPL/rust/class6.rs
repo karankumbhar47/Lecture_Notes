@@ -82,7 +82,7 @@
 *       a = b = c = 0 
 *
 *       a - f(b) - c*d  (means left side is c*d not c*d will computed first)
-*               --> matters if you compute which subtration 
+*               --> matters if you compute which subtrati/on 
 *               --> some language not specify the order 
 *               --> then order depends on compiler
 *

@@ -28,3 +28,19 @@ insertionSort (x:xs) = insert x (insertionSort xs)
                         | otherwise = y: (insert x l)
 
 -- haskell do lazy evaluation
+
+index :: int-> int -> int
+index h l = div (add h l) 2
+
+add :: int-> int -> int
+add m n = m+n 
+
+
+binSearch :: [Int] -> Int -> Int -> Int -> Bool
+binSearch [] _ _ _ = False
+binSearch li h l e |  h<l  = False | otherwise = find(li h l e)
+
+find :: [Int] -> Int -> Int -> Int -> Bool
+find li h l e   |  (li!!(index h l) == e) = False
+                |  li!!(index h l) < e = (binSearch li ((index h l)-1) l e )
+                |  li!!(index h l) > e = (binSearch li h ((index h l)+1) e)
