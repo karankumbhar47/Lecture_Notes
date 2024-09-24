@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SymbolTable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hack Assembler</a> &gt; <a href="index.source.html" class="el_package">com.assembler</a> &gt; <span class="el_source">SymbolTable.java</span></div><h1>SymbolTable.java</h1><pre class="source lang-java linenums">package com.assembler;
+
+import java.util.HashMap;
+
+public class SymbolTable {
+    private final HashMap&lt;String, Integer&gt; symbolTable;
+
+<span class="fc" id="L8">    public SymbolTable() {</span>
+<span class="fc" id="L9">        symbolTable = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L10">        setDefaultSymbol();</span>
+<span class="fc" id="L11">    }</span>
+    
+    public void addEntry(String symbol, int address){
+<span class="fc" id="L14">        this.symbolTable.put(symbol,address); </span>
+<span class="fc" id="L15">    }</span>
+    
+    public boolean contains(String symbol){
+<span class="fc" id="L18">        return symbolTable.containsKey(symbol);</span>
+    }
+    
+    public int getAddress(String symbol){
+<span class="fc" id="L22">        return this.symbolTable.get(symbol);</span>
+    }
+
+    public void setDefaultSymbol() {
+<span class="fc" id="L26">        symbolTable.put(&quot;R0&quot;, 0);</span>
+<span class="fc" id="L27">        symbolTable.put(&quot;R1&quot;, 1);</span>
+<span class="fc" id="L28">        symbolTable.put(&quot;R2&quot;, 2);</span>
+<span class="fc" id="L29">        symbolTable.put(&quot;R3&quot;, 3);</span>
+<span class="fc" id="L30">        symbolTable.put(&quot;R4&quot;, 4);</span>
+<span class="fc" id="L31">        symbolTable.put(&quot;R5&quot;, 5);</span>
+<span class="fc" id="L32">        symbolTable.put(&quot;R6&quot;, 6);</span>
+<span class="fc" id="L33">        symbolTable.put(&quot;R7&quot;, 7);</span>
+<span class="fc" id="L34">        symbolTable.put(&quot;R8&quot;, 8);</span>
+<span class="fc" id="L35">        symbolTable.put(&quot;R9&quot;, 9);</span>
+<span class="fc" id="L36">        symbolTable.put(&quot;R10&quot;, 10);</span>
+<span class="fc" id="L37">        symbolTable.put(&quot;R11&quot;, 11);</span>
+<span class="fc" id="L38">        symbolTable.put(&quot;R12&quot;, 12);</span>
+<span class="fc" id="L39">        symbolTable.put(&quot;R13&quot;, 13);</span>
+<span class="fc" id="L40">        symbolTable.put(&quot;R14&quot;, 14);</span>
+<span class="fc" id="L41">        symbolTable.put(&quot;R15&quot;, 15);</span>
+
+<span class="fc" id="L43">        symbolTable.put(&quot;SCREEN&quot;, 16384);</span>
+<span class="fc" id="L44">        symbolTable.put(&quot;KBD&quot;, 24576);</span>
+
+        // Other predefined symbols
+<span class="fc" id="L47">        symbolTable.put(&quot;SP&quot;, 0);</span>
+<span class="fc" id="L48">        symbolTable.put(&quot;LCL&quot;, 1);</span>
+<span class="fc" id="L49">        symbolTable.put(&quot;ARG&quot;, 2);</span>
+<span class="fc" id="L50">        symbolTable.put(&quot;THIS&quot;, 3);</span>
+<span class="fc" id="L51">        symbolTable.put(&quot;THAT&quot;, 4);</span>
+<span class="fc" id="L52">    }</span>
+
+    public void showSymbolTable(){
+<span class="nc" id="L55">        System.out.println(&quot;Symbol table : &quot;+symbolTable.toString());</span>
+<span class="nc" id="L56">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

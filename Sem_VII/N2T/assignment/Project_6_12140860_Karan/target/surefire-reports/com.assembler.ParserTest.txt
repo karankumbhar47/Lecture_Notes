@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.assembler.ParserTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.assembler.ParserTest
+com.assembler.ParserTest.testComp -- Time elapsed: 0.038 s
+com.assembler.ParserTest.testDest -- Time elapsed: 0.002 s
+com.assembler.ParserTest.testJump -- Time elapsed: 0.002 s
+com.assembler.ParserTest.testEdgeCases -- Time elapsed: 0.002 s
+com.assembler.ParserTest.testSymbol -- Time elapsed: 0.001 s
+com.assembler.ParserTest.testHasMoreLines -- Time elapsed: 0.002 s
+com.assembler.ParserTest.testAdvanceAndInstructionType -- Time elapsed: 0.001 s

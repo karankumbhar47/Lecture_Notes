@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hack Assembler</a> &gt; <a href="index.source.html" class="el_package">com.assembler</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package com.assembler;
+
+import com.assembler.custom.InstructionType;
+import org.w3c.dom.xpath.XPathResult;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class Parser {
+
+    private final BufferedReader reader;
+    private String currentLine;
+
+<span class="fc" id="L18">    public Parser(Path filePath) throws IOException {</span>
+<span class="fc" id="L19">        reader = Files.newBufferedReader(filePath);</span>
+<span class="fc" id="L20">        currentLine = null;</span>
+<span class="fc" id="L21">    }</span>
+
+    public boolean hasMoreLines() throws IOException{
+<span class="fc" id="L24">        return reader.ready();</span>
+    }
+
+    public void advance() throws IOException{
+        do{
+<span class="fc" id="L29">            currentLine = reader.readLine();</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            if(currentLine!=null)</span>
+<span class="fc" id="L31">                currentLine = currentLine.trim();</span>
+<span class="pc bpc" id="L32" title="1 of 6 branches missed.">        }while (currentLine!=null &amp;&amp; (currentLine.isEmpty() || currentLine.startsWith(&quot;//&quot;)));</span>
+<span class="fc" id="L33">    }</span>
+
+    public InstructionType instructionType(){
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (currentLine.contains(&quot;@&quot;))</span>
+<span class="fc" id="L37">            return InstructionType.A_INSTRUCTION;</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        else if (currentLine.startsWith(&quot;(&quot;) &amp;&amp; currentLine.endsWith(&quot;)&quot;))</span>
+<span class="fc" id="L39">            return InstructionType.L_INSTRUCTION;</span>
+        else
+<span class="fc" id="L41">            return InstructionType.C_INSTRUCTION;</span>
+    }
+
+    public String symbol(){
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if(instructionType()==InstructionType.A_INSTRUCTION)</span>
+<span class="fc" id="L46">            return currentLine.substring(1);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        else if(instructionType()==InstructionType.L_INSTRUCTION)</span>
+<span class="fc" id="L48">            return currentLine.substring(1,currentLine.length()-1);</span>
+        else
+<span class="fc" id="L50">            return null;</span>
+    }
+
+    public String dest(){
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if(instructionType()==InstructionType.C_INSTRUCTION){</span>
+<span class="fc" id="L55">            int equalIndex = currentLine.indexOf(&quot;=&quot;);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if(equalIndex!=-1){</span>
+<span class="fc" id="L57">                return currentLine.substring(0,equalIndex);</span>
+            }
+        }
+<span class="fc" id="L60">        return null;</span>
+    }
+
+    public String comp(){
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if(instructionType()==InstructionType.C_INSTRUCTION){</span>
+<span class="fc" id="L65">            int indexSemiColon = currentLine.indexOf(&quot;;&quot;);</span>
+<span class="fc" id="L66">            int indexEqual = currentLine.indexOf(&quot;=&quot;);</span>
+
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">            if(indexEqual!=-1 &amp;&amp; indexSemiColon!=-1)</span>
+<span class="nc" id="L69">                return currentLine.substring(indexEqual+1,indexSemiColon);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            else if(indexEqual!=-1)</span>
+<span class="fc" id="L71">                return currentLine.substring(indexEqual+1);</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">            else if(indexSemiColon!=-1)</span>
+<span class="fc" id="L73">                return currentLine.substring(0,indexSemiColon);</span>
+            else
+<span class="nc" id="L75">                return currentLine;</span>
+        }
+<span class="fc" id="L77">        return null;</span>
+    }
+
+    public String jump(){
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if(instructionType()==InstructionType.C_INSTRUCTION){</span>
+<span class="fc" id="L82">            int semiColonIndex = currentLine.indexOf(&quot;;&quot;);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            if(semiColonIndex!=-1){</span>
+<span class="fc" id="L84">                return currentLine.substring(semiColonIndex+1);</span>
+            }
+        }
+<span class="fc" id="L87">        return null;</span>
+    }
+
+    public void close() throws IOException {
+<span class="fc" id="L91">        reader.close();</span>
+<span class="fc" id="L92">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

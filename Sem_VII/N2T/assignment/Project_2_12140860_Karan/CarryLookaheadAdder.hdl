@@ -1,0 +1,31 @@
+// Carry Lookahead Adder implementation
+CHIP CarryLookaheadAdder{
+    IN a[4], b[4], c;
+    OUT sum[4], cout;
+
+    PARTS:
+    //write your code here
+    Xor(a = a[0], b = b[0], out = x0);
+    Xor(a = a[1], b = b[1], out = x1);
+    Xor(a = a[2], b = b[2], out = x2);
+    Xor(a = a[3], b = b[3], out = x3);
+
+    And(a = a[0], b = b[0], out = a0);
+    And(a = a[1], b = b[1], out = a1);
+    And(a = a[2], b = b[2], out = a2);
+    And(a = a[3], b = b[3], out = a3);
+
+    And(a = x0, b = c,       out = andX0C0);
+    Or (a = a0, b = andX0C0, out = orA0C1 );
+    And(a = x1, b = orA0C1,  out = andX1C1);
+    Or (a = a1, b = andX1C1, out = orA1C2 );
+    And(a = x2, b = orA1C2,  out = andX2C2);
+    Or (a = a2, b = andX2C2, out = orA2C3 );
+    And(a = x3, b = orA2C3,  out = andX3C3);
+    Or (a = a3, b = andX3C3, out = cout   );
+
+    Xor(a = x0, b = c,       out = sum[0] );
+    Xor(a = x1, b = orA0C1, out = sum[1] );
+    Xor(a = x2, b = orA1C2,  out = sum[2] );
+    Xor(a = x3, b = orA2C3,  out = sum[3] );
+}

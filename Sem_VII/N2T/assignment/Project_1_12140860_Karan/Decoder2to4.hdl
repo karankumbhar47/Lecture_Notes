@@ -1,0 +1,19 @@
+/**
+ * 2-to-4 Decoder.
+ * Given two inputs (a and b), it produces four outputs (q0, q1, q2, q3).
+ * Only one output is set to 1 based on the combination of the inputs.
+ */
+
+CHIP Decoder2to4 {
+    IN a, b;
+    OUT q0, q1, q2, q3;
+    
+    PARTS:
+      Not(in= a, out=Nota);
+      Not(in= b, out=Notb);
+      And(a= Nota, b= Notb, out=q0);
+      And(a= Nota, b= b,    out=q1);
+      And(a= a,    b= Notb, out=q2);
+      And(a= a,    b= b,    out=q3);
+    
+}

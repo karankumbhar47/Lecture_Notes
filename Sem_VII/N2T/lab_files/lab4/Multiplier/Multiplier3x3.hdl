@@ -1,0 +1,22 @@
+CHIP Multiplier3x3 {
+    IN a[3], b[3]; 
+    OUT out[6]; 
+
+    PARTS:
+    And(a= a[0], b= b[0], out= out[0]);
+    And(a= a[0], b= b[1], out= andA0B1);
+    And(a= a[0], b= b[2], out= andA0B2);
+    And(a= a[1], b= b[0], out= andA1B0);
+    And(a= a[1], b= b[1], out= andA1B1);
+    And(a= a[1], b= b[2], out= andA1B2);
+    And(a= a[2], b= b[0], out= andA2B0);
+    And(a= a[2], b= b[1], out= andA2B1);
+    And(a= a[2], b= b[2], out= andA2B2);
+    
+    HalfAdder(a= andA1B0, b= andA0B1, sum= out[1], carry=carry10);
+    FullAdder(a= andA2B0, b= andA1B1, c= andA0B2, sum= sum20, carry=carry20);
+    FullAdder(a= sum20, b= carry10, c=carry20, sum= out[2], carry=carry22);
+    FullAdder(a= andA2B1, b= andA1B2, c= carry22, sum= out[3], carry=carry30);
+    HalfAdder(a= carry30, b= carry22, sum= sum31, carry=carry31);
+    FullAdder(a= andA2B2, b= sum31,   c = carry31, sum= out[4], carry=out[5]);
+}

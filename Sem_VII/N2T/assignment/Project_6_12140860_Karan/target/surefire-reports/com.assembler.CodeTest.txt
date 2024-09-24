@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.assembler.CodeTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in com.assembler.CodeTest
+com.assembler.CodeTest.comp -- Time elapsed: 0.035 s
+com.assembler.CodeTest.dest -- Time elapsed: 0.002 s
+com.assembler.CodeTest.jump -- Time elapsed: 0.002 s

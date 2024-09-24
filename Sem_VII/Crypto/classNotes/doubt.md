@@ -1,0 +1,2 @@
+-   meaning of the constraint
+    -   example() means that will input>0 => output >0

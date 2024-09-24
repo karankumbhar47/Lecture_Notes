@@ -1,0 +1,7 @@
+com/assembler/HackAssembler.class
+com/assembler/Parser.class
+com/assembler/custom/DataMap.class
+com/assembler/custom/Utils.class
+com/assembler/Code.class
+com/assembler/SymbolTable.class
+com/assembler/custom/InstructionType.class

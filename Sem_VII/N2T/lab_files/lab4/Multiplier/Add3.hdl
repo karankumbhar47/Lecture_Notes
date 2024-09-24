@@ -1,0 +1,10 @@
+CHIP Add3 {
+    IN a[3], b[3];
+    OUT out[3];
+
+    PARTS:
+    HalfAdder(a= a[0],    b= b[0],            sum= out[0],  carry= carry0);
+    FullAdder(a= carry0,  b= a[1],  c= b[1],  sum= out[1],  carry= carry1 );
+    FullAdder(a= carry1,  b= a[2],  c= b[2],  sum= out[2],  carry= carry2 );
+    //// Replace this comment with your code.
+}

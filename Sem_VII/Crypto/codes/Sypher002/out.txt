@@ -1,0 +1,32 @@
+What is the message that you want to encrypt? (0-15): Message: 0
+Ciphertext: 14
+What is the message that you want to encrypt? (0-15): Message: 1
+Ciphertext: 4
+What is the message that you want to encrypt? (0-15): Message: 2
+Ciphertext: 7
+What is the message that you want to encrypt? (0-15): Message: 3
+Ciphertext: 6
+What is the message that you want to encrypt? (0-15): Message: 4
+Ciphertext: 15
+What is the message that you want to encrypt? (0-15): Message: 5
+Ciphertext: 5
+What is the message that you want to encrypt? (0-15): Message: 6
+Ciphertext: 13
+What is the message that you want to encrypt? (0-15): Message: 7
+Ciphertext: 12
+What is the message that you want to encrypt? (0-15): Message: 8
+Ciphertext: 1
+What is the message that you want to encrypt? (0-15): Message: 9
+Ciphertext: 8
+What is the message that you want to encrypt? (0-15): Message: 10
+Ciphertext: 3
+What is the message that you want to encrypt? (0-15): Message: 11
+Ciphertext: 2
+What is the message that you want to encrypt? (0-15): Message: 12
+Ciphertext: 10
+What is the message that you want to encrypt? (0-15): Message: 13
+Ciphertext: 11
+What is the message that you want to encrypt? (0-15): Message: 14
+Ciphertext: 0
+What is the message that you want to encrypt? (0-15): Message: 15
+Ciphertext: 9

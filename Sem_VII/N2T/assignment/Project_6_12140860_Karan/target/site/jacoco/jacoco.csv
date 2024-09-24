@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Hack Assembler,com.assembler,SymbolTable,7,192,0,0,2,32,1,5,1,5
+Hack Assembler,com.assembler,Code,0,27,0,0,0,4,0,4,0,4
+Hack Assembler,com.assembler,Parser,11,172,5,31,2,41,5,22,0,9
+Hack Assembler,com.assembler,HackAssembler,9,201,0,14,3,61,1,12,1,5
+Hack Assembler,com.assembler.custom,DataMap,0,307,0,0,0,54,0,1,0,1
+Hack Assembler,com.assembler.custom,InstructionType,0,21,0,0,0,4,0,1,0,1
+Hack Assembler,com.assembler.custom,Utils,6,83,1,7,2,19,2,6,1,3

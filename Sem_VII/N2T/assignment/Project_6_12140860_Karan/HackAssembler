@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if the filename is provided
+asmFile=$1
+
+# Compiling Project
+outputDir="target"
+mkdir -p "$outputDir"
+javac -d "$outputDir" $(find src/main/java -name "*.java")
+
+# Running Program
+java -cp "$outputDir" com.assembler.HackAssembler "$asmFile"

@@ -1,0 +1,21 @@
+/**
+ * Encoder 2 to 4 :
+ * in a[8]
+ */
+
+CHIP Encoder8to3 {
+    IN in[8];
+    OUT out[3];
+
+    PARTS:
+      Or(a= in[4], b= in[5], out= out45);
+      Or(a= in[6], b= in[7], out= out67);
+      Or(a= out45, b= out67, out= out[2]);
+      
+      Or(a= in[2], b= in[3], out= out23);
+      Or(a= out23, b= out67, out= out[1]);
+
+      Or(a= in[7], b= in[5], out= out75);
+      Or(a= in[3], b= in[1], out= out31);
+      Or(a= out75, b= out31, out= out[0]);
+}

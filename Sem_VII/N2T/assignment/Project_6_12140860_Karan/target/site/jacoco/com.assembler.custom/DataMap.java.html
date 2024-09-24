@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataMap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hack Assembler</a> &gt; <a href="index.source.html" class="el_package">com.assembler.custom</a> &gt; <span class="el_source">DataMap.java</span></div><h1>DataMap.java</h1><pre class="source lang-java linenums">package com.assembler.custom;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+public final class DataMap {
+<span class="fc" id="L10">    public static final Logger logger = Logger.getLogger(&quot;com.assembler.HackAssembler&quot;);</span>
+<span class="fc" id="L11">    public static final Path ASM_FILES_DIR = Paths.get(&quot;src/main/resources/AsmFiles&quot;);</span>
+<span class="fc" id="L12">    public static final Path HACK_FILES_DIR = Paths.get(&quot;src/main/resources/HackFiles&quot;);</span>
+<span class="fc" id="L13">    public static final Path OUTPUT_DIR = Paths.get(&quot;src/main/resources/out&quot;);</span>
+
+
+<span class="fc" id="L16">    public static final Map&lt;String, Integer&gt; jumpMap = new HashMap&lt;&gt;();</span>
+
+    static {
+<span class="fc" id="L19">        jumpMap.put(null, 0);</span>
+<span class="fc" id="L20">        jumpMap.put(&quot;JGT&quot;, 1);</span>
+<span class="fc" id="L21">        jumpMap.put(&quot;JEQ&quot;, 2);</span>
+<span class="fc" id="L22">        jumpMap.put(&quot;JGE&quot;, 3);</span>
+<span class="fc" id="L23">        jumpMap.put(&quot;JLT&quot;, 4);</span>
+<span class="fc" id="L24">        jumpMap.put(&quot;JNE&quot;, 5);</span>
+<span class="fc" id="L25">        jumpMap.put(&quot;JLE&quot;, 6);</span>
+<span class="fc" id="L26">        jumpMap.put(&quot;JMP&quot;, 7);</span>
+    }
+
+<span class="fc" id="L29">    public static final Map&lt;String, Integer&gt; compMap = new HashMap&lt;&gt;();</span>
+
+    static {
+<span class="fc" id="L32">        compMap.put(&quot;0&quot;, 42);</span>
+<span class="fc" id="L33">        compMap.put(&quot;1&quot;, 63);</span>
+<span class="fc" id="L34">        compMap.put(&quot;-1&quot;, 58);</span>
+<span class="fc" id="L35">        compMap.put(&quot;D&quot;, 12);</span>
+<span class="fc" id="L36">        compMap.put(&quot;A&quot;, 48);</span>
+<span class="fc" id="L37">        compMap.put(&quot;M&quot;, 112);</span>
+<span class="fc" id="L38">        compMap.put(&quot;!D&quot;, 13);</span>
+<span class="fc" id="L39">        compMap.put(&quot;!A&quot;, 49);</span>
+<span class="fc" id="L40">        compMap.put(&quot;!M&quot;, 113);</span>
+<span class="fc" id="L41">        compMap.put(&quot;-D&quot;, 15);</span>
+<span class="fc" id="L42">        compMap.put(&quot;-A&quot;, 51);</span>
+<span class="fc" id="L43">        compMap.put(&quot;-M&quot;, 115);</span>
+<span class="fc" id="L44">        compMap.put(&quot;D+1&quot;, 31);</span>
+<span class="fc" id="L45">        compMap.put(&quot;A+1&quot;, 55);</span>
+<span class="fc" id="L46">        compMap.put(&quot;M+1&quot;, 119);</span>
+<span class="fc" id="L47">        compMap.put(&quot;D-1&quot;, 14);</span>
+<span class="fc" id="L48">        compMap.put(&quot;A-1&quot;, 50);</span>
+<span class="fc" id="L49">        compMap.put(&quot;M-1&quot;, 114);</span>
+<span class="fc" id="L50">        compMap.put(&quot;D+A&quot;, 2);</span>
+<span class="fc" id="L51">        compMap.put(&quot;D+M&quot;, 66);</span>
+<span class="fc" id="L52">        compMap.put(&quot;D-A&quot;, 19);</span>
+<span class="fc" id="L53">        compMap.put(&quot;D-M&quot;, 83);</span>
+<span class="fc" id="L54">        compMap.put(&quot;A-D&quot;, 7);</span>
+<span class="fc" id="L55">        compMap.put(&quot;M-D&quot;, 71);</span>
+<span class="fc" id="L56">        compMap.put(&quot;D&amp;A&quot;, 0);</span>
+<span class="fc" id="L57">        compMap.put(&quot;D&amp;M&quot;, 64);</span>
+<span class="fc" id="L58">        compMap.put(&quot;D|A&quot;, 21);</span>
+<span class="fc" id="L59">        compMap.put(&quot;D|M&quot;, 85);</span>
+    }
+
+<span class="fc" id="L62">    public static final Map&lt;String,Integer&gt; destMap = new HashMap&lt;&gt;();</span>
+
+    static {
+<span class="fc" id="L65">        destMap.put(null ,0);</span>
+<span class="fc" id="L66">        destMap.put(&quot;M&quot;  ,1);</span>
+<span class="fc" id="L67">        destMap.put(&quot;D&quot;  ,2);</span>
+<span class="fc" id="L68">        destMap.put(&quot;MD&quot; ,3);</span>
+<span class="fc" id="L69">        destMap.put(&quot;DM&quot; ,3);</span>
+<span class="fc" id="L70">        destMap.put(&quot;A&quot;  ,4);</span>
+<span class="fc" id="L71">        destMap.put(&quot;AM&quot; ,5);</span>
+<span class="fc" id="L72">        destMap.put(&quot;AD&quot; ,6);</span>
+<span class="fc" id="L73">        destMap.put(&quot;ADM&quot;,7);</span>
+<span class="fc" id="L74">        destMap.put(&quot;AMD&quot;,7);</span>
+<span class="fc" id="L75">    }</span>
+
+
+    private DataMap() {
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

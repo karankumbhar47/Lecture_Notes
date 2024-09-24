@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.assembler.HackAssemblerTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.400 s -- in com.assembler.HackAssemblerTest
+com.assembler.HackAssemblerTest.testHackAssembler(String)[1] -- Time elapsed: 0.033 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[2] -- Time elapsed: 0.004 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[3] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[4] -- Time elapsed: 0.205 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[5] -- Time elapsed: 0.080 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[6] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[7] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[8] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[9] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[10] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[11] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[12] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[13] -- Time elapsed: 0.001 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[14] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[15] -- Time elapsed: 0.002 s
+com.assembler.HackAssemblerTest.testHackAssembler(String)[16] -- Time elapsed: 0.002 s
