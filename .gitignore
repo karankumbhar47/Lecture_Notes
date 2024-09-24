@@ -44,6 +44,7 @@ Thumbs.db
 .env.local
 .env.*.local
 
+*/env
 # Ignore configuration files
 *.config
 *.conf
