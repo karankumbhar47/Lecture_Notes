@@ -1,0 +1,12 @@
+// Majority gate: Outputs 1 if at least two inputs are true
+CHIP Majority {
+    IN a, b, c;
+    OUT out;
+
+    PARTS:
+    And(a=a, b=b, out=aAndb);
+    And(a=b, b=c, out=bAndc);
+    And(a=c, b=a, out=cAnda);
+    Or(a=aAndb, b=bAndc,out=or1);
+    Or(a=cAnda, b=or1, out=out);
+}

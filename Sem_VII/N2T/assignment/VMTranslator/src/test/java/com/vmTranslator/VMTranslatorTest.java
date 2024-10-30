@@ -1,5 +1,6 @@
 package com.vmTranslator;
 
+import com.vmTranslator.VMExceptions.SyntaxExceptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,17 +20,17 @@ class VMTranslatorTest {
     private static final Path VM_FILES_DIR = Paths.get("src/main/resources/VMFiles");
     private static final Path CURR_DIR = Paths.get("");
 
-    private Path outputVmFilePath;
-    private Path outputTstFilePath;
-    private Path actualOutputFilePath;
+    private Path outputAsmFilePath;
 
     @BeforeEach
     void setup() {
+        CodeWriter.isTesting = true;
     }
 
     @AfterEach
     void tearDown() throws IOException {
-        Files.deleteIfExists(outputVmFilePath);
+        Files.deleteIfExists(outputAsmFilePath);
+        CodeWriter.isTesting = false;
     }
 
     @ParameterizedTest
@@ -40,28 +41,21 @@ class VMTranslatorTest {
             "StackTest.vm",
             "StaticTest.vm",
     })
-    void testHackAssembler(String fileName) throws IOException, InterruptedException {
+    void testHackAssembler(String fileName) throws IOException, InterruptedException, SyntaxExceptions {
         Path inputFilePath = VM_FILES_DIR.resolve(fileName);
-        System.out.println("Input file path: " + inputFilePath.toAbsolutePath());
 
         VMTranslator.main(new String[]{inputFilePath.toString()});
 
-        outputVmFilePath = VM_FILES_DIR.resolve(fileName.replace(".vm", ".asm"));
-        outputTstFilePath = VM_FILES_DIR.resolve(fileName.replace(".vm", ".tst"));
-        actualOutputFilePath = CURR_DIR.resolve("result.asm");
+        outputAsmFilePath = VM_FILES_DIR.resolve(fileName.replace(".vm", ".asm"));
+        Path outputTstFilePath = VM_FILES_DIR.resolve(fileName.replace(".vm", ".tst"));
 
-
-        System.out.println("Output VM file path: " + outputVmFilePath.toAbsolutePath());
-        System.out.println("Actual output file path: " + actualOutputFilePath.toAbsolutePath());
-        Files.copy(actualOutputFilePath, outputVmFilePath, StandardCopyOption.REPLACE_EXISTING);
-        if(Files.exists(outputVmFilePath)){
-            System.out.println("success "+outputTstFilePath.toAbsolutePath());
+        if(Files.exists(outputAsmFilePath)){
             runAndCheck(outputTstFilePath.toString());
         }
     }
 
     void runAndCheck(String pathToTestScript) throws InterruptedException, IOException {
-        System.out.println(pathToTestScript);
+        System.out.println("Test script path: "+pathToTestScript);
         ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "CPUEmulator.sh "+pathToTestScript);
         processBuilder.redirectErrorStream(true);
 
@@ -74,7 +68,7 @@ class VMTranslatorTest {
             output.append(line).append("\n");
         int exitCode = process.waitFor();
 
-        System.out.println("output : "+output.toString());
+        System.out.println("output : "+ output);
         String successMessage = "End of script - Comparison ended successfully";
         assertTrue(output.toString().contains(successMessage), "Test failed, success message not found in output : " + output);
         assertEquals(0, exitCode, "Process exited with non-zero exit code: " + exitCode);

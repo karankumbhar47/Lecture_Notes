@@ -1,0 +1,13 @@
+CHIP MultiPortRAM64 {
+    IN  address[6], in[16], load[2];
+    OUT out[16];
+
+    PARTS:
+    DMux4Way(in=true, sel=load, a=loadA, b=loadB, c=loadC, d=loadD);
+    RAM64(in=in, address=address, load=loadA, out=outA);
+    RAM64(in=in, address=address, load=loadB, out=outB);
+    RAM64(in=in, address=address, load=loadC, out=outC);
+    RAM64(in=in, address=address, load=loadD, out=outD);
+    Mux4Way16(a=outA, b=outB, c=outC, d=outD, sel=load, out=out);
+}
+

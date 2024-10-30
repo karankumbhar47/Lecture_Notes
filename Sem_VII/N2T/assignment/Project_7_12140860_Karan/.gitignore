@@ -1,0 +1,4 @@
+/target/
+.VMTranlator.iml
+result.asm
+src/main/resources/VMFiles/*.asm

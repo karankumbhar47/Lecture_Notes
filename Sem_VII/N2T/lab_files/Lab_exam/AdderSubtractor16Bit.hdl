@@ -1,0 +1,11 @@
+CHIP AdderSubtractor16Bit {
+    IN A[16], B[16], Op;   // A and B are 16-bit inputs, Op is the operation selector (0 for add, 1 for subtract)
+    OUT Sum[16], CarryOut; // 16-bit Sum output and CarryOut
+
+    PARTS:
+
+    Not16(in=B, out=notB);           
+    Inc16(in=notB, out=negB);        
+    Mux16(a=B, b=negB, sel=Op, out=Bsel);
+    Add16(a=A, b=Bsel, out=Sum); 
+}
