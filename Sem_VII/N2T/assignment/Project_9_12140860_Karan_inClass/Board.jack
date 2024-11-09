@@ -1,0 +1,349 @@
+class Board {
+    field int size, lineThickness;
+    field int cellSize,gridSize;
+    field int originX,originY;
+    field int squareOffset,figureOffset;
+    field int squareThickness;
+    field int seperatorThickness;
+    field int winSizeX,winSizeY;
+
+    constructor Board new(int s) {
+        var int i;
+        var int j;
+
+        let originY = 90;
+        let originX = 305;
+        let winSizeX = 510;
+        let winSizeY = 254;
+        let cellSize = 50; 
+        let lineThickness = 2;
+        let figureOffset = 10;
+        let squareThickness = 3;
+        let squareOffset = 5;
+        let size = s;
+        let seperatorThickness = 4;
+        let gridSize = cellSize * 3; 
+        do clrScreen();
+        return this;
+    }
+
+    method void clrScreen() {
+        return;
+    }
+
+
+    method void update(int cellX, int cellY, int player) {
+        if(player=0){
+            do drawO(cellX,cellY);
+        }
+        else{
+            do drawX(cellX,cellY);
+        }
+        return;
+    }
+
+
+    method void draw() {
+        var int i, t;
+        var int x1,x2,y1,y2;
+
+        let i = 1;
+        while(i<3){
+            let x1 = originX;
+            let y1 = originY+ (i * cellSize) + (i*lineThickness);
+            let x2 = originX+gridSize+ (size*lineThickness);
+            let y2 = y1;
+            let t = 0; 
+            while(t<lineThickness){
+                do Screen.drawLine(x1+t,y1+t,x2+t,y2+t);
+                let t = t + 1;
+            }
+            let i = i+1;
+        }
+
+        let i = 1;
+        while(i<3){
+            let x1 = originX+ (i * cellSize) + (i*lineThickness);
+            let y1 = originY;
+            let x2 = x1;
+            let y2 = originY + gridSize + (size*lineThickness);
+            let t = 0; 
+            while(t<lineThickness){
+                do Screen.drawLine(x1+t,y1+t,x2+t,y2+t);
+                let t = t + 1;
+            }
+            let i = i+1;
+        }
+        return;
+    }
+
+
+    method void drawO(int cellX, int cellY) {
+        var int ro, ri, x, y;
+
+        let x = originX + (cellX * cellSize) + (cellX * lineThickness) + (cellSize / 2) + (squareOffset/2);
+        let y = originY + (cellY * cellSize) + (cellY * lineThickness) + (cellSize / 2) + (squareOffset/2);
+
+        let ro = (cellSize / 2) - (figureOffset/2) - 2; 
+        let ri = ro - 4; 
+
+        do Screen.drawCircle(x, y, ro); 
+        do Screen.setColor(false);      
+        do Screen.drawCircle(x, y, ri); 
+        do Screen.setColor(true);       
+
+        return;
+    }
+
+
+	method void drawX(int cellX, int cellY) {
+		var int t,i, height, width,x,y;
+		let t = 4;
+		let i = t-1;
+        let height = 35;
+        let width = 35;
+
+        let x = originX + (cellX * cellSize) + figureOffset + (cellX * lineThickness);
+        let y = originY + (cellY * cellSize) + figureOffset + (cellY * lineThickness);
+
+		while(~(i<0)) {
+			do Screen.drawLine(x,y+height-i,x+width-i,y);
+			do Screen.drawLine(x+i,y+height,x+width,y+i);
+			
+			
+			do Screen.drawLine(x+i,y,x+width,y+height-i);
+			do Screen.drawLine(x,y+i,x+width-i,y+height);
+			
+			let i = i-1;
+		}
+		return;
+	}
+
+    method void drawSeperator(){
+        var int tempSize,i;
+        let tempSize = seperatorThickness-(seperatorThickness/2);
+
+        let i = -(seperatorThickness/2);
+        while(i<tempSize){
+            do Screen.drawLine(winSizeX/2+i,0,winSizeX/2+i,winSizeY);
+            let i = i+1;
+        }
+
+
+        let i = -(seperatorThickness/2);
+        while(i<tempSize){
+            do Screen.drawLine(winSizeX/2,80+i,winSizeX,80+i);
+            let i = i+1;
+        }
+
+
+        let i = -(seperatorThickness/2);
+        while(i<tempSize){
+            do Screen.drawLine(0,(winSizeY/2)+i,winSizeX/2,(winSizeY/2)+i);
+            let i = i+1;
+        }
+
+
+        let i = seperatorThickness-1;
+        while(i>-1){
+            do Screen.drawLine(0,0+i,winSizeX,0+i);
+            let i = i-1;
+        }
+
+        let i = seperatorThickness-2;
+        while(i>-2){
+            do Screen.drawLine(winSizeX-i,0,winSizeX-i,winSizeY);
+            let i = i-1;
+        }
+
+        let i = seperatorThickness-2;
+        while(i>-2){
+            do Screen.drawLine(0,winSizeY-i,winSizeX,winSizeY-i);
+            let i = i-1;
+        }
+
+        let i = seperatorThickness-1;
+        while(i>-1){
+            do Screen.drawLine(0+i,0,0+i,winSizeY);
+            let i = i-1;
+        }
+        return;
+    } 
+
+
+    method void drawSquare(int cellX, int cellY,int isColoring) {
+        var int startX, startY, endX, endY;
+        var int tempSize, thickness;
+
+        let tempSize = cellSize;
+        let startX = originX + (cellX * tempSize) + (cellX * lineThickness) + squareOffset;
+        let startY = originY + (cellY * tempSize) + (cellY * lineThickness) + squareOffset;
+        let thickness = squareThickness; 
+
+        while (thickness > 0) {
+            let endX = startX + tempSize - 1 - squareOffset;
+            let endY = startY + tempSize - 1 - squareOffset;
+
+            if(~(isColoring=1)){
+                do Screen.setColor(false);
+            }
+            do Screen.drawLine(startX, startY, endX, startY);
+            do Screen.drawLine(endX, startY, endX, endY); 
+            do Screen.drawLine(startX, endY, endX, endY); 
+            do Screen.drawLine(startX, startY, startX, endY); 
+
+            let startX = startX + 1;
+            let startY = startY + 1;
+            let tempSize = tempSize - 2; 
+            let thickness = thickness - 1;
+        }
+
+        do Screen.setColor(true);
+
+        return;
+    }
+
+
+    method int getOriginX(){
+        return originX;
+    }
+    
+    method int getOriginY(){
+        return originY;
+    }
+
+    method int getCellSize(){
+        return cellSize;
+    }
+
+    method void clearCell(int cellX, int cellY){
+        var int startX, startY, endX, endY;
+
+        let startX = originX + (cellX * cellSize) + (cellX * lineThickness);
+        let startY = originY + (cellY * cellSize) + (cellY * lineThickness);
+        let endX = startX + cellSize + 1;
+        let endY = startY + cellSize + 1;
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle(startX, startY, endX, endY);
+        do Screen.setColor(true);
+        return;
+    }
+
+    method void resetLayout(int s1,int s2){
+        var int startX, startY, endX, endY;
+
+        let startX = 10;
+        let startY = winSizeY/2 - 40;
+        let endX = 240;
+        let endY = winSizeY/2 + 40;
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle(startX-2, startY-2, endX+2, endY+2);
+        do Screen.setColor(true);
+        do drawSeperator();
+        do setPlayerScore(s1,s2);
+        return;
+    }
+
+    method void setPlayerScore(Player p1, Player p2){
+        do Output.moveCursor(1,3);
+        do p1.printName(); 
+        do Output.moveCursor(3,3);
+        do Output.printString("Score : ");
+        do Output.printInt(p1.getScore());
+
+        do Output.moveCursor(17,3);
+        do p2.printName(); 
+        do Output.moveCursor(19,3);
+        do Output.printString("Score : ");
+        do Output.printInt(p2.getScore());
+        return;
+    }
+
+    method void setPlayerTerms(Player player){
+        do Output.moveCursor(2,42);
+        do player.printName(); 
+        do Output.printString("'s term");
+        do Output.moveCursor(4,36);
+        if(player.getId()=0){
+            do Output.printString("User Arrow key to move");
+            do Output.moveCursor(6,36);
+            do Output.printString("hit <Space> to insert \"O\"");
+        }
+        else{
+            do Output.printString("User Arrow key to move");
+            do Output.println();
+            do Output.moveCursor(6,36);
+            do Output.printString("hit <Space> to insert \"X\"");
+        }
+        return;
+    }
+
+    method void setHightestBatch(Player p1,Player p2){
+        if(p1.getScore()>p2.getScore()){
+            do drawLabelledRectangle(150,20,80,30,3,20, false);
+            do drawLabelledRectangle(150,200,80,30,19,20,true);
+            return;
+        }
+        if(p1.getScore()<p2.getScore()){
+            do drawLabelledRectangle(150,20,80,30,3,20,true);
+            do drawLabelledRectangle(150,200,80,30,19,20,false);
+            return;
+        }
+        do drawLabelledRectangle(150,20,80,30,3,20,true);
+        do drawLabelledRectangle(150,200,80,30,19,20,true);
+        return;
+    }
+
+    method void drawLabelledRectangle(int startX, int startY, int width, int height,int sx,int sy,boolean erase) {
+        var int borderX1, borderY1, borderX2, borderY2;
+        var int innerX1, innerY1, innerX2, innerY2;
+        
+        let borderX1 = startX;
+        let borderY1 = startY;
+        let borderX2 = startX + width;
+        let borderY2 = startY + height;
+
+        if (~erase) { 
+            do Screen.setColor(true); 
+            do Screen.drawRectangle(borderX1, borderY1, borderX2, borderY2);
+            let innerX1 = startX + 5; 
+            let innerY1 = startY + 5;
+            let innerX2 = borderX2 - 5;
+            let innerY2 = borderY2 - 5;
+            
+            do Screen.setColor(false); 
+            do Screen.drawRectangle(innerX1, innerY1, innerX2, innerY2);
+            do Screen.setColor(true); 
+            do Output.moveCursor(sx,sy); 
+            do Output.printString("Highest"); 
+        } else { 
+            do Screen.setColor(false); 
+            do Screen.drawRectangle(borderX1, borderY1, borderX2, borderY2);
+        }
+
+        return;
+    }
+
+    method void drawWinningLine(int x1,int y1,int x2, int y2){
+        var int posX1, posX2, posY1, posY2;
+
+
+        let posX1 = originX + (x1 * cellSize) + (x1 * lineThickness) + (cellSize / 2);
+        let posY1 = originY + (y1 * cellSize) + (y1 * lineThickness) + (cellSize / 2);
+
+        let posX2 = originX + (x2 * cellSize) + (x2 * lineThickness) + (cellSize / 2);
+        let posY2 = originY + (y2 * cellSize) + (y2 * lineThickness) + (cellSize / 2);
+
+
+        do Screen.setColor(true);
+        do Screen.drawLine(posX1,posY1,posX2,posY2);
+        do Screen.drawLine(posX1+1,posY1+1,posX2+1,posY2+1);
+        return;
+    }
+
+
+}
+
+

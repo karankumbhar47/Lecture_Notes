@@ -1,0 +1,6 @@
+/target/
+.VMTranlator.iml
+*/result.asm/*
+src/main/resources/VMFiles/*.asm
+/src/main/resources/FunctionFiles/
+/src/main/resources/VMFiles/

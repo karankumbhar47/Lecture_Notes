@@ -1,0 +1,47 @@
+class Player{
+    field String name;
+    field int id;
+    field int score;
+    // static Array gameArray;
+    static int totalGames ;
+
+    constructor Player new(String playerName, int playerId){
+        let name = playerName;
+        let id = playerId;
+        let score = 0;
+        // let gameArray = Array.new(20);
+        return this;
+    } 
+
+    method int getId(){
+        return id;
+    }
+
+    method void printName(){
+        do Output.printString(name);
+        return;
+    }
+
+    method int getScore(){
+        return score;
+    }
+
+    // function Array getGameArray(){
+    //     return gameArray;
+    // }
+
+    function int getTotalGames(){
+        return totalGames;
+    }
+
+    function int increaseTotalGames(){
+        let totalGames = totalGames + 1;
+        return totalGames;
+    } 
+
+    method int increaseScore(){
+        let score = score + 1;
+        do Player.increaseTotalGames();
+        return score;
+    }
+}

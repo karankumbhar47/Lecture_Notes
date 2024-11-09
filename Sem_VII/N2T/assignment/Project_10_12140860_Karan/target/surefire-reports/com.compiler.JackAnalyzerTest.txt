@@ -1,0 +1,21 @@
+-------------------------------------------------------------------------------
+Test set: com.compiler.JackAnalyzerTest
+-------------------------------------------------------------------------------
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.421 s -- in com.compiler.JackAnalyzerTest
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithDirectories(String)[1] -- Time elapsed: 0.070 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithDirectories(String)[2] -- Time elapsed: 0.066 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithDirectories(String)[3] -- Time elapsed: 0.051 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[1] -- Time elapsed: 0.007 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[2] -- Time elapsed: 0.006 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[3] -- Time elapsed: 0.013 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[4] -- Time elapsed: 0.011 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[5] -- Time elapsed: 0.007 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[6] -- Time elapsed: 0.029 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerTokensWithFiles(String)[7] -- Time elapsed: 0.020 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[1] -- Time elapsed: 0.010 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[2] -- Time elapsed: 0.004 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[3] -- Time elapsed: 0.017 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[4] -- Time elapsed: 0.014 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[5] -- Time elapsed: 0.008 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[6] -- Time elapsed: 0.029 s
+com.compiler.JackAnalyzerTest.testJackAnalyzerWithFiles(String)[7] -- Time elapsed: 0.009 s

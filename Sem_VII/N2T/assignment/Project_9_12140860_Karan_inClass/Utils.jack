@@ -1,0 +1,53 @@
+class Utils{
+    field int winSizeX,winSizeY;
+
+    constructor Utils new(){
+        let winSizeX = 510;
+        let winSizeY = 254;
+        return this;
+    }
+
+    function void giveScore(){
+        return;
+    }
+
+    method void delay(int duration) {
+        var int i, j;
+
+        let i = 0;
+        do displayView(winSizeX,winSizeY,i,duration);
+        while (i < duration) {
+            
+            let j = 0;
+            while (j < 30000) { 
+                let j = j + 1;
+            }
+            let i = i + 1;
+            do displayView(winSizeX,winSizeY,i,duration);
+        }
+        return;
+    }
+
+    method void displayView(int winSizeX, int winSizeY, int sec, int total){
+        var int startX, startY, endX, endY;
+
+        let startX = 10;
+        let startY = winSizeY/2 - 40;
+        let endX = 240;
+        let endY = winSizeY/2 + 40;
+
+        do Screen.setColor(true);
+        do Screen.drawRectangle(startX-2, startY-2, endX+2, endY+2);
+        do Screen.setColor(false);
+        do Screen.drawRectangle(startX, startY, endX, endY);
+        do Screen.setColor(true);
+
+        do Output.moveCursor(10,4);
+        do Output.printString("Press [Enter] to restart");
+        do Output.println();
+        do Output.moveCursor(12,5);
+        do Output.printString("Board Reset in ");
+        do Output.printInt((total - sec)/3);
+        return;
+    }
+}

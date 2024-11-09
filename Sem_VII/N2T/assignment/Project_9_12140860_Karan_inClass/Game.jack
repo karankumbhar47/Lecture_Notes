@@ -1,0 +1,263 @@
+class Game {
+    field Array grid;
+    field int currX, currY;
+    field Player currPlayer;
+    field Board board;
+    field Utils utils;
+    field boolean restartGame;
+    field Player player1, player2;
+
+    constructor Game new(int s) {
+        let board = Board.new(s);
+        let grid = Array.new(9);
+        let utils = Utils.new();
+        let restartGame = true;
+        let player1 = Player.new("Player1",0);
+        let player2 = Player.new("Player2",1);
+        do initGame();
+        do board.drawSeperator();
+        do board.setPlayerScore(player1,player2);
+        do board.setPlayerTerms(player1);
+
+        return this;
+    }
+
+    method void initGame(){
+        var int i,j;
+        
+        let currX = 0;
+        let currY = 0;
+        let currPlayer = player1;
+
+        let i = 0;
+        while (i < 3) {
+            let j = 0;
+            while (j < 3) {
+                let grid[3*i+j] = -1; 
+                do board.clearCell(i,j);
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+
+        do board.draw();
+        do board.drawSquare(currX, currY,1);
+        return;
+    }
+
+    method void startGame() {
+        var int key;
+        var int lastKey; 
+
+        let lastKey = -1;
+        while (true) {
+            let key = Keyboard.keyPressed();
+
+            if(restartGame){
+                if(key=32 | (key>130 & key<134) & ~(lastKey=key)){
+                    do handleDirectionInput(key);
+                    let lastKey = key;
+                }
+            }
+            else{
+                if(key=128){
+                    do initGame();
+                    let restartGame = true;
+                    do board.resetLayout(player1,player2);
+                    do board.setPlayerTerms(player1);
+                }
+            }
+        }
+        return;
+    }
+
+    method void handleDirectionInput(int key) {
+        if (key = 131) { 
+            do moveUp();
+        } 
+        else{ 
+            if (key = 133) {
+                do moveDown();
+            }
+            else{
+                if(key = 130) { 
+                    do moveLeft();
+                }
+                else{
+                    if (key = 132) { 
+                        do moveRight();
+                    } 
+                    else{
+                        if (key = 32) {
+                            do mark(); 
+                        }
+                    }
+
+                }
+            } 
+        }
+        return;
+    }
+
+    method void moveUp() {
+        do board.drawSquare(currX, currY,0);
+        if(grid[currX*3+currY]>-1){
+            do board.update(currX, currY, grid[currX*3+currY]); 
+        }
+        if (currY > 0) {
+            let currY = currY - 1;
+        }
+        do board.drawSquare(currX, currY,1);
+        return;
+    }
+
+    method void moveDown() {
+        do board.drawSquare(currX, currY,0);
+        if(grid[currX*3+currY]>-1){
+            do board.update(currX, currY, grid[currX*3+currY]); 
+        }
+        if (currY < 2) {
+            let currY = currY + 1;
+        }
+        do board.drawSquare(currX, currY,1);
+        return;
+    }
+
+    method void moveLeft() {
+        do board.drawSquare(currX, currY,0);
+        if(grid[currX*3+currY]>-1){
+            do board.update(currX, currY, grid[currX*3+currY]);
+        }
+        if (currX > 0) {
+            let currX = currX - 1;
+        }
+        do board.drawSquare(currX, currY,1);
+        return;
+    }
+
+    method void moveRight() {
+        do board.drawSquare(currX, currY,0);
+        if(grid[currX*3+currY]>-1){
+            do board.update(currX, currY, grid[currX*3+currY]);
+        }
+        if (currX < 2) {
+            let currX = currX + 1;
+        }
+        do board.drawSquare(currX, currY,1);
+        return;
+    }
+
+    method void mark() {
+        var int winner;
+        if(grid[3*currX+currY]<0){
+            do board.update(currX, currY, currPlayer.getId());
+            let grid[3*currX+currY] = currPlayer.getId();
+            if(checkWinner()){
+                let restartGame = false;
+                do board.setPlayerScore(player1,player2);
+                do board.setHightestBatch(player1,player2);
+                do utils.delay(10);
+                return;
+            }
+            if(currPlayer.getId()=1){
+                let currPlayer = player1;
+                do board.setPlayerTerms(currPlayer);
+            }
+            else{
+                let currPlayer = player2;
+                do board.setPlayerTerms(currPlayer);
+            }
+        }
+        return;
+    }
+
+    method boolean checkWinner(){
+        var int winner;
+        let winner = checkWin();
+        if (winner > -1) {
+            do Output.moveCursor(2,42);
+            if(winner=0){
+                do player1.printName();
+                do player1.increaseScore();
+            }
+            else{
+                do player2.printName();
+                do player2.increaseScore();
+            }
+            do Output.printString(" wins!  ");
+            do Output.moveCursor(4,35);
+            do Output.printString("        Game Over        ");
+            do Output.moveCursor(6,35);
+            do Output.printString("                          ");
+            return true;
+        }
+
+        if (checkTie()) {
+            do Output.moveCursor(2,42);
+            do Output.printString("Game is a tie!");
+            do Output.moveCursor(4,35);
+            do Output.printString("        Game Over          ");
+            do Output.moveCursor(6,35);
+            do Output.printString("                             ");
+            return true;
+        }
+        return false;
+    }
+
+    method int checkWin() {
+        var int i;
+        var int player;
+
+        let i = 0;
+        while (i < 3) {
+            let player = grid[3*i]; 
+            if ((player > -1) & (grid[3*i + 1] = player) & (grid[3*i + 2] = player)) {
+                do board.drawSquare(currX,currY,false);
+                do board.drawWinningLine(i,0,i,2);
+                return player; 
+            }
+            let i = i + 1;
+        }
+
+        let i = 0;
+        while (i < 3) {
+            let player = grid[i];
+            if ((player > -1) & (grid[i + 3] = player) & (grid[i + 6] = player)) {
+                do board.drawSquare(currX,currY,false);
+                do board.drawWinningLine(0,i,2,i);
+                return player; 
+            }
+            let i = i + 1;
+        }
+
+        let player = grid[0];
+        if ((player > -1) & (grid[4] = player) & (grid[8] = player)) {
+            do board.drawSquare(currX,currY,false);
+            do board.drawWinningLine(0,0,2,2);
+            return player; 
+        }
+
+        let player = grid[2];
+        if ((player > -1) & (grid[4] = player) & (grid[6] = player)) {
+            do board.drawSquare(currX,currY,false);
+            do board.drawWinningLine(0,2,2,0);
+            return player;
+        }
+
+        return -1; 
+    }
+
+    method boolean checkTie() {
+        var int i;
+
+        let i = 0;
+        while (i < 9) {
+            if (grid[i] = -1) {
+                return false;
+            }
+            let i = i + 1;
+        }
+        return true; 
+    }
+
+}
