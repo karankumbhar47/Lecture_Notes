@@ -64,3 +64,5 @@ yarn.lock
 
 Sem_VII/DIP/codes/images/DIP3E_Original_Images_CH*
 Sem_VII/DIP/codes/images/*
+Sem_VII/Crypto/codes/gurobi/tools/
+*.apk
