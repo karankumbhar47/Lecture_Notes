@@ -25,7 +25,7 @@ CHIP CarryLookaheadAdder{
     Or (a = a3, b = andX3C3, out = cout   );
 
     Xor(a = x0, b = c,       out = sum[0] );
-    Xor(a = x1, b = orA0C1, out = sum[1] );
+    Xor(a = x1, b = orA0C1,  out = sum[1] );
     Xor(a = x2, b = orA1C2,  out = sum[2] );
     Xor(a = x3, b = orA2C3,  out = sum[3] );
 }
