@@ -1,0 +1,33 @@
+package com.coreJava.FactoryPattern;
+
+public enum CodeRunnerType {
+    STREAM,
+    COMPARATOR,
+    EQUAL,
+    LAMBDA,
+    COLLECTION,
+
+    LIST,
+    LIST_ARRAYLIST,
+    LIST_ARRAYLIST_THREAD,
+    LIST_LINKED_LISt,
+    LIST_STACK,
+    LIST_COPY_ON_WRITE,
+
+    MAP,
+    MAP_HASHMAP,
+    MAP_LINKED_HASHMAP,
+    MAP_HASH_TABLE,
+    MAP_LRU_CACHE,
+
+    OBJECT,
+    RANDOM_SUB,
+    RANDOM_EXCEPTION,
+
+    BASIC_VARIABLE,
+    BASIC_GC,
+    BASIC_ASSIGN,
+    BASIC_PARAM,
+    BASIC_REF,
+
+}

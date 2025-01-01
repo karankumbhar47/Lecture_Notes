@@ -1,10 +1,10 @@
-package com.coreJava.RunnerClasses;
+package com.coreJava.RunnerClasses.Advance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import com.coreJava.FactoryPattern.CodeRunnerInterface;
-import com.coreJava.RunnerClasses.ListPractice.InnerClass;
+import com.coreJava.RunnerClasses.List.ListPractice.InnerClass;
 import com.coreJava.models.Employee;
 import com.coreJava.models.Student;
 

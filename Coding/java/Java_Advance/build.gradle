@@ -17,11 +17,19 @@ jar {
     }
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation 'com.sun.istack:istack-commons-runtime:4.2.0'
+
     testImplementation 'junit:junit:4.13.2'
 }
 
