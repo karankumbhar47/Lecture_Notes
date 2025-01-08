@@ -1,0 +1,49 @@
+package com.core_java.FactoryPattern;
+
+public enum CodeRunnerType {
+    STREAM,
+    JAVA8_STREAM,
+    COMPARATOR,
+    EQUAL,
+    LAMBDA,
+
+    COLLECTION,
+    COLLECTION_ITERATOR,
+
+    LIST,
+    LIST_ARRAYLIST,
+    LIST_ARRAYLIST_THREAD,
+    LIST_LINKED_LIST,
+    LIST_VECTOR,
+    LIST_STACK,
+    LIST_COPY_ON_WRITE,
+
+    MAP,
+    MAP_HASHMAP,
+    MAP_LINKED_HASHMAP,
+    MAP_HASH_TABLE,
+    MAP_LRU_CACHE,
+    MAP_WEAK_HASHMAP,
+    MAP_ID_HASHMAP,
+    MAP_TREE,
+    MAP_ENUM,
+    MAP_IMMUTABLE,
+
+    SET,
+    QUEUE,
+    QUEUE_IMPL,
+    QUEUE_CONCURRENT,
+
+    OBJECT,
+    RANDOM_SUB,
+    RANDOM_EXCEPTION,
+
+    BASIC_VARIABLE,
+    BASIC_GC,
+    BASIC_ASSIGN,
+    BASIC_PARAM,
+    BASIC_REF,
+
+    UTILS_TIME,
+
+}

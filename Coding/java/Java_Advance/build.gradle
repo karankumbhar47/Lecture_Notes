@@ -13,13 +13,7 @@ plugins {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.coreJava.MainFactory'
-    }
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        attributes 'Main-Class': 'com.core_java.Main'
     }
 }
 
@@ -34,7 +28,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.coreJava.Main'
+    mainClass = 'com.core_java.Main'
 }
 
 jacocoTestReport {
